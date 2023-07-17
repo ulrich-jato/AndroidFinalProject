@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">FinalProject</string>
+    <string name="aviation_tracker">Aviation Flight Tracker</string>
+    <string name="currency_converter">Currency Converter</string>
+    <string name="trivia_question">Trivia Question Database</string>
+    <string name="bear_image">Bear Image Generator</string>
 </resources>

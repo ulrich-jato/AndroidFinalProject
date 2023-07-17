@@ -4,18 +4,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/mainBackgroundColor"
     tools:context=".MainActivity">
 
 
-    
-
-    <TextView
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/aviation"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="@color/mainButtonColor"
+        android:text="@string/aviation_tracker"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/currency"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/currency"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="@color/mainButtonColor"
+        android:text="@string/currency_converter"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/trivia"
+        app:layout_constraintEnd_toEndOf="@+id/aviation"
+        app:layout_constraintStart_toStartOf="@+id/aviation" />
+
+    <Button
+        android:id="@+id/trivia"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="@color/mainButtonColor"
+        android:text="@string/trivia_question"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/bearImage"
+        app:layout_constraintEnd_toEndOf="@+id/currency"
+        app:layout_constraintStart_toStartOf="@+id/currency" />
+
+    <Button
+        android:id="@+id/bearImage"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="80dp"
+        android:backgroundTint="@color/mainButtonColor"
+        android:text="@string/bear_image"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/trivia"
+        app:layout_constraintStart_toStartOf="@+id/trivia" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginBottom="100dp"
+        app:layout_constraintBottom_toTopOf="@+id/aviation"
+        app:layout_constraintEnd_toEndOf="@+id/aviation"
+        app:layout_constraintStart_toStartOf="@+id/aviation"
+        app:srcCompat="@drawable/final_project" />
 </androidx.constraintlayout.widget.ConstraintLayout>

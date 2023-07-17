@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ProjectFinal</string>
+    <string name="aviation_tracker">Suivi des Vols Aériens</string>
+    <string name="currency_converter">Convertisseur de Devises</string>
+    <string name="trivia_question">Questions Anecdotiques</string>
+    <string name="bear_image">Générateur d\'Images d\'Ours</string>
+</resources>
