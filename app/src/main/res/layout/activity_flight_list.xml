@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:cardBackgroundColor="@color/blueBlack"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/cardView">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/airplane"
+                 />
+
+            <TextView
+                android:id="@+id/no_use1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:text="@string/destination"
+                android:textColor="@color/tanAccent"
+                android:textSize="15sp"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/destinationTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="Douala"
+                android:textColor="@color/tanAccent"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/no_use1"
+                app:layout_constraintStart_toEndOf="@+id/no_use1"
+                app:layout_constraintTop_toTopOf="@+id/no_use1"
+                />
+
+            <TextView
+                android:id="@+id/no_use2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginBottom="15dp"
+                android:text="@string/terminal"
+                android:textColor="@color/tanAccent"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+               />
+
+            <TextView
+                android:id="@+id/terminalTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="T2"
+                android:textColor="@color/tanAccent"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@+id/no_use2"
+                app:layout_constraintStart_toEndOf="@+id/no_use2"
+                app:layout_constraintTop_toTopOf="@+id/no_use2"
+                />
+
+            <TextView
+                android:id="@+id/no_use3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:text="@string/gate"
+                android:textColor="@color/tanAccent"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@+id/terminalTextView"
+                app:layout_constraintStart_toEndOf="@+id/terminalTextView"
+                app:layout_constraintTop_toTopOf="@+id/terminalTextView"
+                />
+
+            <TextView
+                android:id="@+id/gateTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="03"
+                android:textColor="@color/tanAccent"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@+id/no_use3"
+                app:layout_constraintStart_toEndOf="@+id/no_use3"
+                app:layout_constraintTop_toTopOf="@+id/no_use3"
+                 />
+
+            <TextView
+                android:id="@+id/no_use4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:text="@string/delay"
+                android:textColor="@color/tanAccent"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@+id/gateTextView"
+                app:layout_constraintStart_toEndOf="@+id/gateTextView"
+                app:layout_constraintTop_toTopOf="@+id/gateTextView"
+                />
+
+            <TextView
+                android:id="@+id/delayTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="15dp"
+                android:text="12 min"
+                android:textColor="@color/tanAccent"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@+id/no_use4"
+                app:layout_constraintStart_toEndOf="@+id/no_use4"
+                app:layout_constraintTop_toTopOf="@+id/no_use4"
+                />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

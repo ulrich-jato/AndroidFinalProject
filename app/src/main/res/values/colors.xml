@@ -5,5 +5,7 @@
     <color name="my_primary">#FF9800</color>
     <color name="my_secondary">#027685</color>
     <color name="statusBarColor">#FF9800</color>
+    <color name="blueBlack">#111f28</color>
+    <color name="tanAccent">#e3cdb3</color>
 
 </resources>
