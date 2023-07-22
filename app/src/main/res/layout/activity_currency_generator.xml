@@ -1,18 +1,90 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CurrencyGenerator">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Task2: Saif"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/too"
+        android:layout_width="221dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginBottom="88dp"
+        android:inputType=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/convertto"
+        android:autofillHints="" />
+
+    <Button
+        android:id="@+id/sendButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        android:layout_marginBottom="16dp"
+        android:text="Convert"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/convertto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
+        android:text="To"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="36dp" />
+
+    <TextView
+        android:id="@+id/cfrom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
+        android:text="From"
+        app:layout_constraintBottom_toTopOf="@+id/convertto"
+        tools:layout_editor_absoluteX="28dp"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/convertfrom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="68dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/too"
+        app:layout_constraintStart_toEndOf="@+id/cfrom"
+        android:autofillHints="" />
+
+    <Spinner
+        android:id="@+id/spinto"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/too"
+        app:layout_constraintStart_toEndOf="@+id/too"
+        app:layout_constraintTop_toTopOf="@+id/too" />
+
+    <Spinner
+        android:layout_width="0dp"
+        android:id="@+id/spinfrom"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/convertfrom"
+        app:layout_constraintStart_toEndOf="@+id/convertfrom"
+        app:layout_constraintTop_toTopOf="@+id/convertfrom" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
