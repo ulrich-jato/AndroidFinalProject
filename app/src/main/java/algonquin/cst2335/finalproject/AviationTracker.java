@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -31,6 +32,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import algonquin.cst2335.finalproject.data.Flight;
+import algonquin.cst2335.finalproject.data.FlightDatabase;
 import algonquin.cst2335.finalproject.data.FlightDetailsFragment;
 import algonquin.cst2335.finalproject.data.FlightViewModel;
 import algonquin.cst2335.finalproject.databinding.ActivityAviationTrackerBinding;
@@ -53,6 +55,9 @@ public class AviationTracker extends AppCompatActivity {
         queue = Volley.newRequestQueue(this);
         binding = ActivityAviationTrackerBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        //Save the selected flight details to the Room database
+        FlightDatabase db = Room.databaseBuilder(getApplicationContext(),
+                FlightDatabase.class, "flightDatabase").build();
 
         FlightViewModel.selectedFlight.observe(this, (newValue) -> {
             FragmentManager fMgr = getSupportFragmentManager();

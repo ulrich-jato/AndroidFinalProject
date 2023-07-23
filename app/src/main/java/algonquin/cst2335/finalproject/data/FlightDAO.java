@@ -9,11 +9,16 @@ import java.util.List;
 @Dao
 public interface FlightDAO {
     @Insert
-    public long insertMessage(Flight flight);
+    public long insertFlight(Flight flight);
 
     @Query("SELECT * FROM Flight")
     public List<Flight> getAllFlights() ;
 
+    @Query("SELECT * FROM Flight WHERE id = :id")
+    public Flight getFlightById(long id);
+
     @Delete
     public void deleteFlight(Flight flight);
+
+
 }

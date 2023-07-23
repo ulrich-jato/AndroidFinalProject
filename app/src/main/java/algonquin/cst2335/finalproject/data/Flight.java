@@ -22,7 +22,6 @@ public class Flight {
 
     public Flight(){}
     public Flight(String destination, String iataCodeArrival, String terminal, String gate, String delay) {
-        this.id = id;
         this.destination = destination;
         this.iataCodeArrival = iataCodeArrival;
         this.terminal = terminal;
@@ -30,26 +29,49 @@ public class Flight {
         this.delay = delay;
     }
 
-    public long getId(){
+    public long getId() {
         return id;
+    }
+    public void setId(long id) {
+        this.id = id;
     }
     public String getDestination() {
         return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
     }
 
     public String getIataCodeArrival() {
         return iataCodeArrival;
     }
 
+    public void setIataCodeArrival(String iataCodeArrival) {
+        this.iataCodeArrival = iataCodeArrival;
+    }
+
     public String getTerminal() {
         return terminal;
+    }
+
+    public void setTerminal(String terminal) {
+        this.terminal = terminal;
     }
 
     public String getGate() {
         return gate;
     }
 
+    public void setGate(String gate) {
+        this.gate = gate;
+    }
+
     public String getDelay() {
         return delay;
+    }
+
+    public void setDelay(String delay) {
+        this.delay = delay;
     }
 }
