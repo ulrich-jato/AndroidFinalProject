@@ -10,4 +10,6 @@
     <string name="delay">Delay:</string>
     <string name="terminal">Terminal:</string>
     <string name="destination">Dest:</string>
+    <string name="flightDetails">FLIGHT DETAILS</string>
+    <string name="saveFlightButton">Save Flight</string>
 </resources>
