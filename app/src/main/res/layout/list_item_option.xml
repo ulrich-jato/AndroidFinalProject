@@ -1,0 +1,19 @@
+<!-- list_item_option.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp">
+
+    <RadioButton
+        android:id="@+id/optionRadioButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="?android:textColorPrimary"
+        android:buttonTint="?android:colorAccent"
+        android:gravity="center_vertical" />
+</LinearLayout>
