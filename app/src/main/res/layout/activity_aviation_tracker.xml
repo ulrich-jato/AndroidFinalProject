@@ -9,14 +9,19 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_height="match_parent"
         android:layout_width="match_parent">
-
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/myToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/toolbar_background"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
         <FrameLayout
             android:id="@+id/fragmentLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#ffff00"
-            app:layout_constraintTop_toTopOf="parent">
-        </FrameLayout>
+            android:background="@color/tanAccent"
+            app:layout_constraintTop_toBottomOf="@+id/myToolbar"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

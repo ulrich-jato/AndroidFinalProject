@@ -12,8 +12,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -30,6 +33,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import algonquin.cst2335.finalproject.data.Flight;
 import algonquin.cst2335.finalproject.data.FlightDatabase;
@@ -55,6 +60,9 @@ public class AviationTracker extends AppCompatActivity {
         queue = Volley.newRequestQueue(this);
         binding = ActivityAviationTrackerBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        setSupportActionBar(binding.myToolbar);
+
         //Save the selected flight details to the Room database
         FlightDatabase db = Room.databaseBuilder(getApplicationContext(),
                 FlightDatabase.class, "flightDatabase").build();
@@ -118,7 +126,7 @@ public class AviationTracker extends AppCompatActivity {
             flightlist.clear();
             myAdapter.notifyDataSetChanged();
             String inputCode = binding.inputCode.getText().toString().toUpperCase().trim();
-            String stringUrl = "http://api.aviationstack.com/v1/flights?access_key=092a0043b5a7a8a889ee42d27bc5e044&dep_iata="+ inputCode;
+            String stringUrl = "http://api.aviationstack.com/v1/flights?access_key=639c8417ee6ce1d35459e96dbdbb54f6&dep_iata="+ inputCode;
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, stringUrl, null,
                     (successfulResponse) -> {
 
@@ -201,44 +209,37 @@ public class AviationTracker extends AppCompatActivity {
                 int position = getAbsoluteAdapterPosition();
                 Flight selected = flightlist.get(position);
                 flightModel.selectedFlight.postValue(selected);
-                /*
-                AlertDialog.Builder builder = new AlertDialog.Builder( ChatRoom.this );
-                builder.setMessage("Do You Want To Delete It?");
-                builder.setTitle("Attention!");
-                builder.setNegativeButton("No",(cl,which)->{
-                });
 
-                builder.setPositiveButton("Yes",(cl,which)->{
-                    int position = getAbsoluteAdapterPosition();
-                    ChatMessage cm = messages.get(position);
-                    Executor thread = Executors.newSingleThreadExecutor();
-                    thread.execute(()->{
-                        mDAO.deleteMessage(cm); // delete from database
-                        messages.remove(position); // delete from screen
-
-                        runOnUiThread(()->{
-                            myAdapter.notifyDataSetChanged();
-                        });
-                        Snackbar.make(messageText, "You deleted message #" + position, Snackbar.LENGTH_LONG).setAction("Undo",(click)->{
-                                    Executor thread1=Executors.newSingleThreadExecutor();
-                                    thread1.execute(()->{
-                                        mDAO.insertMessage(cm);
-                                        messages.add(position,cm);
-                                        runOnUiThread(()->{
-                                            myAdapter.notifyDataSetChanged();
-                                        });
-                                    });
-                            }).show();
-                    });
-                });
-                builder.create().show();
-               */
             });
             destinationText = itemView.findViewById(R.id.destinationTextView);
             terminalText = itemView.findViewById(R.id.terminalTextView);
             gateText = itemView.findViewById(R.id.gateTextView);
             delayText = itemView.findViewById(R.id.delayTextView);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+
+        getMenuInflater().inflate(R.menu.my_menu,menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if( item.getItemId() == R.id.menu_flight ) {
+            startActivity(new Intent(this, AviationTracker.class));
+        } else if( item.getItemId() == R.id.menu_help ){
+            AlertDialog.Builder builder = new AlertDialog.Builder(AviationTracker.this)
+                    .setMessage(R.string.aviation_help_message)
+                    .setTitle("Instructions!")
+                    .setPositiveButton("OK", (cl, which) -> {
+            });
+            builder.create().show();
+        }
+        return true;
     }
 }
 

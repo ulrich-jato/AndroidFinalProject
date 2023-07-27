@@ -5,4 +5,25 @@
     <string name="currency_converter">Convertisseur de Devises</string>
     <string name="trivia_question">Questions Anecdotiques</string>
     <string name="bear_image">Générateur d\'Images d\'Ours</string>
+    <string name="search_flight">Rechercher</string>
+    <string name="saved_flight">Vols Enregistrés</string>
+    <string name="gate">Porte</string>
+    <string name="delay">Retard</string>
+    <string name="terminal">Terminal</string>
+    <string name="destination">Dest</string>
+    <string name="flightDetails">DÉTAILS DU VOL</string>
+    <string name="saveFlightButton">Enregistrer le vol</string>
+    <string name="aviation_help_message">
+        Bienvenue dans le suivi des vols de l\'aviation !
+        \n1. Rechercher des vols :
+        \n- Entrez le code IATA à 3 chiffres de l\'aéroport pour afficher tous les vols.
+        \n- Sélectionnez un vol pour voir les détails, y compris la destination, le terminal, la porte et le retard.
+        \n- Enregistrez les détails du vol sur l\'appareil en cliquant sur le bouton "Enregistrer".
+        \n\n2. Voir les vols enregistrés :
+        \n- Cliquez sur le bouton "Voir les vols enregistrés" sur la page principale.
+        \n- Consultez une liste des vols enregistrés sur l\'appareil.
+        \n- Cliquez sur un vol pour voir les détails.
+        \n- Supprimez un vol enregistré de la base de données en utilisant le bouton "Supprimer".
+        \n\nProfitez du suivi de vos vols en toute simplicité ! Bon voyage ! ✈️
+    </string>
 </resources>

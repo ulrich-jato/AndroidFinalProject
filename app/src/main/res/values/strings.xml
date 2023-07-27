@@ -12,4 +12,17 @@
     <string name="destination">Dest:</string>
     <string name="flightDetails">FLIGHT DETAILS</string>
     <string name="saveFlightButton">Save Flight</string>
+    <string name="aviation_help_message">
+        Welcome to the Aviation Flight Tracker!\n\n
+        1. Search Flights:\n
+        - Type the 3-digit IATA Code of the airport to list all flights.\n
+        - Select a flight to view its details, including Destination, Terminal, Gate, and Delay.\n
+        - Save flight details to the device by clicking the "Save" button.\n\n
+        2. View Saved Flights:\n
+        - Click the "View Saved Flights" button on the main page.\n
+        - See a list of flights saved to the device.\n
+        - Click on a flight to view its details.\n
+        - Delete a saved flight from the database using the "Delete" button.\n\n
+        Enjoy tracking your flights with ease! Safe travels! ✈️
+    </string>
 </resources>
