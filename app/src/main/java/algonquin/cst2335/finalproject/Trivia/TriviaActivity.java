@@ -131,8 +131,8 @@ public class TriviaActivity extends AppCompatActivity {
             Volley.newRequestQueue(this).add(request);
 
 
-//            Intent intent = new Intent(TriviaActivity.this, OptionsActivity.class);
-//            startActivity(intent);
+            Intent intent = new Intent(TriviaActivity.this, OptionsActivity.class);
+            startActivity(intent);
 
         });
 
@@ -141,7 +141,13 @@ public class TriviaActivity extends AppCompatActivity {
         });
 
 
-        questionsRecylerView.setLayoutManager(new LinearLayoutManager(this));
+        try {
+            questionsRecylerView.setLayoutManager(new LinearLayoutManager(OptionsActivity.class.newInstance()));
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        } catch (InstantiationException e) {
+            throw new RuntimeException(e);
+        }
 
 //        binding.submit.setOnClickListener( click ->{
 //

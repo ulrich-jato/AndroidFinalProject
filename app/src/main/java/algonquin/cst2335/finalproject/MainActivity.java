@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import algonquin.cst2335.finalproject.Trivia.MainTriviaActivity;
 import algonquin.cst2335.finalproject.Trivia.TriviaActivity;
 import algonquin.cst2335.finalproject.databinding.ActivityMainBinding;
 
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Button for Trivia Question
         binding.trivia.setOnClickListener(click -> {
-            startActivity(new Intent(this, TriviaActivity.class));
+            startActivity(new Intent(this, MainTriviaActivity.class));
         });
 
         // Button for Bear Image Generator

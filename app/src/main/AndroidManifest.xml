@@ -15,12 +15,15 @@
             android:name=".BearImageGenerator"
             android:exported="false" />
         <activity
-            android:name=".Trivia.TriviaActivity"
+            android:name=".Trivia.MainTriviaActivity"
             android:exported="false" />
+
         <activity
             android:name=".Trivia.OptionsActivity"
             android:exported="false" />
-
+        <activity
+            android:name=".Trivia.TriviaActivity"
+            android:exported="false" />
         <activity
             android:name=".CurrencyGenerator"
             android:exported="false" />

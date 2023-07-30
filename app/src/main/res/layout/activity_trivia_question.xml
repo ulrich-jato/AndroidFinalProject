@@ -27,47 +27,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-<!--    <RadioButton-->
-<!--        android:id="@+id/optionsBtn"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="30dp"-->
-<!--        android:text="Trivia Questions Database"-->
-<!--        android:textColor="#FFFCFC"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.502"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textView3" />-->
-
-<!--    <RadioButton-->
-<!--        android:id="@+id/optionsBtn2"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="5dp"-->
-<!--        android:text="Trivia Questions Database"-->
-<!--        android:textColor="#FFFCFC"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/optionsBtn"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/optionsBtn" />-->
-
-<!--    <RadioButton-->
-<!--        android:id="@+id/optionsBtn3"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="5dp"-->
-<!--        android:text="Trivia Questions Database"-->
-<!--        android:textColor="#FFFCFC"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/optionsBtn2"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/optionsBtn2" />-->
-
-<!--    <RadioButton-->
-<!--        android:id="@+id/optionsBtn4"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="5dp"-->
-<!--        android:text="Trivia Questions Database"-->
-<!--        android:textColor="#FFFCFC"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/optionsBtn3"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/optionsBtn3" />-->
 
     <Button
         android:id="@+id/prev"
