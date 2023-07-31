@@ -33,17 +33,21 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import algonquin.cst2335.finalproject.data.Flight;
+import algonquin.cst2335.finalproject.data.FlightDAO;
 import algonquin.cst2335.finalproject.data.FlightDatabase;
 import algonquin.cst2335.finalproject.data.FlightDetailsFragment;
 import algonquin.cst2335.finalproject.data.FlightViewModel;
 import algonquin.cst2335.finalproject.databinding.ActivityAviationTrackerBinding;
 import algonquin.cst2335.finalproject.databinding.ActivityFlightListBinding;
 
-public class AviationTracker extends AppCompatActivity {
+public class AviationTracker extends AppCompatActivity implements  FlightDetailsFragment.OnFlightDetailsListener {
     protected RequestQueue queue = null;
     protected String delay;
     protected String destination;
@@ -54,6 +58,7 @@ public class AviationTracker extends AppCompatActivity {
     RecyclerView.Adapter<FlightViewHolder> myAdapter;
     ArrayList<Flight> flightlist;
     FlightViewModel flightModel;
+    FlightDAO flightDAO;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,12 +71,15 @@ public class AviationTracker extends AppCompatActivity {
         //Save the selected flight details to the Room database
         FlightDatabase db = Room.databaseBuilder(getApplicationContext(),
                 FlightDatabase.class, "flightDatabase").build();
+        flightDAO = db.flightDAO();
 
         FlightViewModel.selectedFlight.observe(this, (newValue) -> {
             FragmentManager fMgr = getSupportFragmentManager();
             FragmentTransaction tx = fMgr.beginTransaction();
 
-            FlightDetailsFragment flightFragment = new FlightDetailsFragment( newValue);
+            boolean isSavedFlight = isFlightSavedInDatabase(newValue);
+            FlightDetailsFragment flightFragment = new FlightDetailsFragment( newValue, isSavedFlight);
+            flightFragment.setOnFlightDetailsListener(this);
             tx.add(R.id.fragmentLocation, flightFragment);
             tx.replace(R.id.fragmentLocation, flightFragment);
             tx.commit();
@@ -95,25 +103,25 @@ public class AviationTracker extends AppCompatActivity {
 
         binding.savedFlightButton.setOnClickListener(click -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(AviationTracker.this);
-            builder.setMessage("Do You Want To Save this Flight ?");
+            builder.setMessage("Do You Want To View Saved Flight ?");
             builder.setTitle("Attention!");
             builder.setNegativeButton("No", (cl, which) -> {
                 // Code to handle "No" button click
             });
 
             builder.setPositiveButton("Yes", (cl, which) -> {
-                // Code to handle "Yes" button click
-                Snackbar.make(binding.savedFlightButton, "You saved The Flight", Snackbar.LENGTH_LONG)
-                        .setAction("Undo", (snackbarClick) -> {
-                            // Code to handle "Undo" action in the Snackbar
-                        })
-                        .show();
+                flightlist.clear();
+                myAdapter.notifyDataSetChanged();
+                Executor thread = Executors.newSingleThreadExecutor();
+                thread.execute(() ->
+                {
+                    flightlist.addAll(flightDAO.getAllFlights()); //Once you get the data from database
+                    runOnUiThread( () ->  myAdapter.notifyDataSetChanged());
+                });
             });
 
             builder.create().show();
         });
-
-
 
 
         binding.searchFlightButton.setOnClickListener(click -> {
@@ -218,12 +226,49 @@ public class AviationTracker extends AppCompatActivity {
         }
     }
 
+    // Implement the onFlightDeleted() method from the OnFlightDeletedListener interface
+    @Override
+    public void onFlightDeleted(Flight flight) {
+        // Remove the deleted flight from the flightlist and update the RecyclerView
+        flightlist.remove(flight);
+        myAdapter.notifyDataSetChanged();
+    }
+    @Override
+    public void onFlightSaved(Flight flight) {
+        // Save the deleted flight from the flightlist and update the RecyclerView
+        flightlist.add(flight);
+        myAdapter.notifyDataSetChanged();
+    }
+    private boolean isFlightSavedInDatabase(Flight flight) {
+        long selectedId = flight.getId();
+        // Use the provided ExecutorService to execute the database query in a separate thread
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        Future<Boolean> future = executorService.submit(() -> {
+            for (Flight savedFlight : flightDAO.getAllFlights()) {
+                if (savedFlight.getId() == selectedId) {
+                    return true;
+                }
+            }
+            return false;
+        });
+
+        // Get the result of the database query (true or false) from the Future
+        try {
+            return future.get();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+            return false; // Return a default value in case of an exception
+        } finally {
+            // Shutdown the ExecutorService to release resources
+            executorService.shutdown();
+        }
+    }
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-
         getMenuInflater().inflate(R.menu.my_menu,menu);
-
         return true;
     }
 
