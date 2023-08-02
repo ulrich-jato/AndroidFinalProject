@@ -66,6 +66,10 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.Ques
                     }
 
         });
+
+    }
+    public int getScore(){
+        return score;
     }
 
     /**

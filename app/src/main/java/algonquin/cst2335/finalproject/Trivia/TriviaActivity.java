@@ -85,33 +85,6 @@ public class TriviaActivity extends AppCompatActivity {
 
         //creating a string reference for the API url concatinated with the question size and category value.
         String url = "https://opentdb.com/api.php?amount="+size+"&category="+choiceValue+"&type=multiple";
-//        binding.textView3.setText(url);
-
-        binding.submit.setOnClickListener(click -> {
-//            AlertDialog.Builder builder = new AlertDialog.Builder(TriviaActivity.this);
-//            builder.setMessage("Do You Want To Submit your answer ?");
-//            builder.setTitle("Attention!");
-//            builder.setNegativeButton("No", (cl, which) -> {
-//                // Code to handle "No" button click
-//            });
-//
-//            builder.setPositiveButton("Yes", (cl, which) -> {
-//                // Code to handle "Yes" button click
-//                Snackbar.make(binding.submit, "You submited your answer", Snackbar.LENGTH_LONG)
-//                        .setAction("Undo", (snackbarClick) -> {
-//                            // Code to handle "Undo" action in the Snackbar
-//                        })
-//                        .show();
-//            });
-//
-//            builder.create().show();
-//
-//            SharedPreferences.Editor editor = prefs.edit();
-//            editor.putString("iataCode", binding.editText.getText().toString());
-//            editor.apply();
-
-
-//            String url2 = "https://opentdb.com/api.php?amount=2&category=22&type=multiple";
 
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                     (successfulResponse) ->{
@@ -158,13 +131,7 @@ public class TriviaActivity extends AppCompatActivity {
             // Add the request to the Volley queue
             Volley.newRequestQueue(this).add(request);
 
-
-//            Intent intent = new Intent(TriviaActivity.this, OptionsActivity.class);
-//            startActivity(intent);
-//            binding.submit.setText("End");
-
-        });
-
+            //Return to previous page when user clicks on "previous" button.
         binding.prev.setOnClickListener(click ->{
             //calling the finish function to close the current activity and return to previous page/activity.
             finish();
@@ -174,11 +141,11 @@ public class TriviaActivity extends AppCompatActivity {
 
         questionsRecylerView.setLayoutManager(new LinearLayoutManager(this));
 
+        binding.submit.setOnClickListener(click ->{
+            int score = qtnAdapter.getScore();
+            Toast.makeText(this,"Your score is: "+ score + " / "+ qtnList.size(), Toast.LENGTH_LONG).show();
+        });
 
-//        binding.submit.setOnClickListener( click ->{
-//
-//
-//        });
     }
 
     }

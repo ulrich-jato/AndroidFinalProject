@@ -56,55 +56,6 @@ import algonquin.cst2335.finalproject.databinding.ActivityTriviaQuestionBinding;
             SharedPreferences.Editor editor = prefs.edit();
             String choice = prefs.getString("Category", "");
 
-//            String url = "https://opentdb.com/api.php?amount=10&category=22&type=multiple";
-//
-//            JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-//                    (successfulResponse) -> {
-//                                            try {
-//                        JSONArray results = successfulResponse.getJSONArray("results");
-//                        qtnList = new ArrayList<>();
-//
-//                        for(int i = 0; i < results.length(); i++){
-//                            JSONObject result = results.getJSONObject(i);
-//                            String category = result.getString("category");
-//                            String type = result.getString("type");
-//                            String difficulty = result.getString("difficulty");
-//                            String questionText = result.getString("question");
-//                            String correctAnswer = result.getString("correct_answer");
-//                            JSONArray incorrectAnswers = result.getJSONArray("incorrect_answers");
-//
-//                            List<String> options = new ArrayList<>();
-//                            options.add(correctAnswer);
-//                            for (int j = 0; j < incorrectAnswers.length(); j++) {
-//                                options.add(incorrectAnswers.getString(j));
-//                            }
-//
-//                            Question question = new Question(questionText, options, correctAnswer);
-//                            qtnList.add(question);
-////
-//                            if (qtnList != null && !qtnList.isEmpty()){
-//                                qtnAdapter = new QuestionsAdapter(qtnList);
-//                                questionsRecyclerView.setAdapter(qtnAdapter);
-//                                qtnAdapter.notifyDataSetChanged();
-//                            }
-//
-//                        }
-//
-//                    } catch (JSONException e){
-//                        e.printStackTrace();
-//                    }
-//
-//                    },
-//                    (errorResponse) -> {
-//                        Toast.makeText(this, "Failed to fetch questions", Toast.LENGTH_SHORT).show();
-//                    });
-//            // Add the request to the Volley queue
-//            Volley.newRequestQueue(this).add(request);
-//
-//            questionsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-//            TextView mtxt = findViewById(R.id.textView5);
-//            mtxt.setText("Options loaded");
-
             //passing the dropdown object to java here.
             Spinner category = findViewById(R.id.dropdown);
 
