@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,6 +59,33 @@ public class TriviaActivity extends AppCompatActivity {
         if (!iataCode.equals("")){
             binding.editText.setText(iataCode);
         }
+        Intent fromPrevious = getIntent();
+        String choice = fromPrevious.getStringExtra("selectedCategory");
+        int choiceValue;
+        String size = fromPrevious.getStringExtra("questionSize");
+
+        //using switch to assign respective category numbers for the API to understand when fetching.
+        switch(choice.toLowerCase()){
+            case "history":
+                choiceValue = 23;
+                break;
+            case "computers":
+                choiceValue = 18;
+                break;
+            case "sports":
+                choiceValue = 21;
+                break;
+            case "general knowledge":
+                choiceValue = 9;
+                break;
+            default:
+                choiceValue = 11;
+                break;
+        }
+
+        //creating a string reference for the API url concatinated with the question size and category value.
+        String url = "https://opentdb.com/api.php?amount="+size+"&category="+choiceValue+"&type=multiple";
+//        binding.textView3.setText(url);
 
         binding.submit.setOnClickListener(click -> {
 //            AlertDialog.Builder builder = new AlertDialog.Builder(TriviaActivity.this);
@@ -83,7 +111,7 @@ public class TriviaActivity extends AppCompatActivity {
 //            editor.apply();
 
 
-            String url = "https://opentdb.com/api.php?amount=10&category=22&type=multiple";
+//            String url2 = "https://opentdb.com/api.php?amount=2&category=22&type=multiple";
 
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                     (successfulResponse) ->{
@@ -131,23 +159,21 @@ public class TriviaActivity extends AppCompatActivity {
             Volley.newRequestQueue(this).add(request);
 
 
-            Intent intent = new Intent(TriviaActivity.this, OptionsActivity.class);
-            startActivity(intent);
+//            Intent intent = new Intent(TriviaActivity.this, OptionsActivity.class);
+//            startActivity(intent);
+//            binding.submit.setText("End");
 
         });
 
         binding.prev.setOnClickListener(click ->{
-            Toast.makeText(this,"You went to previous question", Toast.LENGTH_LONG).show();
+            //calling the finish function to close the current activity and return to previous page/activity.
+            finish();
+            Toast.makeText(this,"You went to previous page", Toast.LENGTH_LONG).show();
+
         });
 
+        questionsRecylerView.setLayoutManager(new LinearLayoutManager(this));
 
-        try {
-            questionsRecylerView.setLayoutManager(new LinearLayoutManager(OptionsActivity.class.newInstance()));
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        } catch (InstantiationException e) {
-            throw new RuntimeException(e);
-        }
 
 //        binding.submit.setOnClickListener( click ->{
 //

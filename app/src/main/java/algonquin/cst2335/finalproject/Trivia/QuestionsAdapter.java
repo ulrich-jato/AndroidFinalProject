@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +20,7 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.Ques
     private List<Question> questions;
 
     public QuestionsAdapter(){};
+    private int score = 0;
 
     public QuestionsAdapter(List<Question> questions) {
 
@@ -30,14 +32,16 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.Ques
     @NonNull
     @Override
     public QuestionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_question, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_option, parent, false);
         return new QuestionViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull QuestionViewHolder holder, int position) {
         Question question = questions.get(position);
-        holder.questionText.setText(question.getQuestion());
+        String questionNumber = String.valueOf(position + 1); // Adding 1 because position starts from 0
+        String questionText = questionNumber + ": " + question.getQuestion();
+        holder.questionText.setText(questionText);
 
         // Clear the previous options
         holder.optionsRadioGroup.removeAllViews();
@@ -52,6 +56,16 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.Ques
             radioButton.setText(option);
             holder.optionsRadioGroup.addView(radioButton);
         }
+        holder.optionsRadioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            String selectedOption = question.getOptions().get(checkedId);
+                    if (selectedOption.equals(question.getCorrectAnswer())) {
+                        // User selected the correct option
+                        // Increment the score
+                        score++;
+
+                    }
+
+        });
     }
 
     /**
@@ -79,6 +93,7 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.Ques
             optionsRadioGroup.setOnCheckedChangeListener((group, checkedId) -> {
                 // Code to handle the user's answer selection
                 // You can use the 'checkedId' to get the selected option and handle it accordingly.
+
             });
         }
     }

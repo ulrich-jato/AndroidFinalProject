@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/mainBackgroundColor"
+    android:background="#21284E"
     tools:context=".Trivia.TriviaActivity">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -19,19 +19,20 @@
     <TextView
         android:id="@+id/questionText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:textColor="#FFFFFF"
         android:textSize="18sp" />
 
-    <RadioGroup
-        android:id="@+id/optionRadioButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textColor="?android:textColorPrimary"
-        android:buttonTint="?android:colorAccent"
-        android:gravity="center_vertical" />
+<!--    <RadioGroup-->
+<!--        android:id="@+id/optionRadioButton"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:buttonTint="?android:colorAccent"-->
+<!--        android:gravity="center_vertical"-->
+<!--        android:textColor="?android:textColorPrimary"-->
+<!--        android:textSize="16sp" />-->
 
     <!-- Options TextViews here -->
 
-<!--</LinearLayout>-->
+    <!--</LinearLayout>-->
 </androidx.constraintlayout.widget.ConstraintLayout>

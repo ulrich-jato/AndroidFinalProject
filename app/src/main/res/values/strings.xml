@@ -4,4 +4,12 @@
     <string name="currency_converter">Currency Converter</string>
     <string name="trivia_question">Trivia Question Database</string>
     <string name="bear_image">Bear Image Generator</string>
+
+    for the spinner/dropdown options
+    <string-array name="category">
+        <item>General Knowledge</item>
+        <item>Sports</item>
+        <item>History</item>
+        <item>Computers</item>
+    </string-array>
 </resources>
