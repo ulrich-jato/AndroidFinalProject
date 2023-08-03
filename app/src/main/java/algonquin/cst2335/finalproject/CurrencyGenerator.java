@@ -2,7 +2,9 @@ package algonquin.cst2335.finalproject;
 
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
@@ -12,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
@@ -87,10 +90,23 @@ public class CurrencyGenerator extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        if (item.getItemId() == R.id.help) {
-            Toast.makeText(this, "version 1.0, code by Seifeldin Eid", Toast.LENGTH_LONG).show();
+        if (item.getItemId() == R.id.icon_flight) {
+            startActivity(new Intent(this, AviationTracker.class));
+        } else if (item.getItemId() == R.id.icon_question) {
+            startActivity(new Intent(this, TriviaQuestion.class));
+        } else if (item.getItemId() == R.id.icon_bear) {
+            startActivity(new Intent(this, BearImageGenerator.class));
+        } else
+        if (item.getItemId() == R.id.icon_back) {
+            startActivity(new Intent(this, MainActivity.class));
+        } else if (item.getItemId() == R.id.help) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(CurrencyGenerator.this);
+            builder.setTitle("HELP: ")
+                    .setMessage("1.Input a number\n2.Pick a currency (from)\n3.Pick a currency (to)\n" +
+                            "4.Click CONVERT to make a conversion\n5.Click ARROWS between currencies to swap them")
+                    .setPositiveButton("OK", (dialog, click) -> {}).create().show();
         }
-        return true;
+        return super.onOptionsItemSelected(item);
     }
 
 
@@ -107,10 +123,13 @@ public class CurrencyGenerator extends AppCompatActivity {
 
         setSupportActionBar(binding.toolbar);
 
+//        if (currencylist == null) {
+//            currencymodel.currency.postValue(currencylist = new ArrayList<CurrencyObject>());
+//        }
         if (currencylist == null) {
-            currencymodel.currency.postValue(currencylist = new ArrayList<CurrencyObject>());
+            currencymodel.currency.setValue(new ArrayList<>());
+            currencylist = currencymodel.currency.getValue();
         }
-
 
         binding.recycleview.setAdapter(myAdapter = new RecyclerView.Adapter<MyRowHolder>() {
             @NonNull
@@ -158,23 +177,6 @@ public class CurrencyGenerator extends AppCompatActivity {
 
         binding.sendButton.setOnClickListener(clik ->
         {
-//            AlertDialog.Builder builder = new AlertDialog.Builder(CurrencyGenerator.this);
-//            builder.setMessage("Do You Want To Save this Currency ?");
-//            builder.setTitle("Attention!");
-//            builder.setNegativeButton("No", (cl, which) -> {
-//                // Code to handle "No" button click
-//            });
-//
-//            builder.setPositiveButton("Yes", (cl, which) -> {
-//                // Code to handle "Yes" button click
-//                Snackbar.make(binding.sendButton, "You saved The currency", Snackbar.LENGTH_LONG)
-//                        .setAction("Undo", (snackbarClick) -> {
-//                            // Code to handle "Undo" action in the Snackbar
-//                        })
-//                        .show();
-//            });
-//
-//            builder.create().show();
 
 
             if (binding.convertfrom.getText().toString().equals("")) {
@@ -229,14 +231,13 @@ public class CurrencyGenerator extends AppCompatActivity {
             FragmentManager fMgr = getSupportFragmentManager();
             FragmentTransaction tx = fMgr.beginTransaction();
 
-            binding.fragmentLocation.setVisibility(View.VISIBLE);
             CurrencyDetailsFragment chatFragment = new CurrencyDetailsFragment(newvalue);
             tx.add(R.id.fragmentLocation, chatFragment);
             tx.replace(R.id.fragmentLocation, chatFragment);
             tx.commit();
             tx.addToBackStack("");
+            Toast.makeText(this, "version 1.0, code by Seifeldin Eid", Toast.LENGTH_LONG).show();
         });
-
 
 
     }
