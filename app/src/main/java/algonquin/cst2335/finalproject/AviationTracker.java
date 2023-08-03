@@ -414,7 +414,7 @@ public class AviationTracker extends AppCompatActivity implements FlightDetailsF
         // Check the ID of the selected MenuItem and perform corresponding actions
         if (item.getItemId() == R.id.menu_flight) {
             // Open the AviationTracker activity from the menu
-            startActivity(new Intent(this, AviationTracker.class));
+            startActivity(new Intent(this, MainActivity.class));
         } else if (item.getItemId() == R.id.menu_help) {
             // Show the help message in an AlertDialog
             AlertDialog.Builder builder = new AlertDialog.Builder(AviationTracker.this)
