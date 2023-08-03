@@ -30,6 +30,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -143,7 +144,20 @@ public class TriviaActivity extends AppCompatActivity {
 
         binding.submit.setOnClickListener(click ->{
             int score = qtnAdapter.getScore();
-            Toast.makeText(this,"Your score is: "+ score + " / "+ qtnList.size(), Toast.LENGTH_LONG).show();
+            //Toast.makeText(this,"Your score is: "+ score + " / "+ qtnList.size(), Toast.LENGTH_LONG).show();
+
+            // Get the user's name (you need to replace "username" with the actual way you get the username)
+            String username = "username";
+            int count = qtnList.size();
+            double percentage = ((double) score / qtnList.size())*100;
+            // Format the percentage to two decimal places
+
+            // Launch the QuizResultActivity
+            Intent resultIntent = new Intent(TriviaActivity.this, QuizResultActivity.class);
+            resultIntent.putExtra("username", username);
+            resultIntent.putExtra("score", score);
+            resultIntent.putExtra("count", count);
+            startActivity(resultIntent);
         });
 
     }

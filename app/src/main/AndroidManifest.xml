@@ -25,6 +25,12 @@
             android:name=".Trivia.TriviaActivity"
             android:exported="false" />
         <activity
+        android:name=".Trivia.QuizResultActivity"
+        android:exported="false" />
+        <activity
+            android:name=".Trivia.ScoreboardActivity"
+            android:exported="false" />
+        <activity
             android:name=".CurrencyGenerator"
             android:exported="false" />
         <activity
