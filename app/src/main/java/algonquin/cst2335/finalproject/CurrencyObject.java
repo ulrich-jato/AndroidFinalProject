@@ -10,31 +10,24 @@ public class CurrencyObject {
     @ColumnInfo(name = "id")
     public int id;
     @ColumnInfo(name = "convertfrom")
-    double convertfrom;
+    String convertfrom;
     @ColumnInfo(name = "convertto")
-    double converto;
+    String converto;
+
+    @ColumnInfo(name = "amountfrom")
+    String cfrom;
+
+    @ColumnInfo(name = "amountto")
+    String too;
 
 
-
-    public CurrencyObject(double name, double rate) {
-        convertfrom = name;
-        converto = rate;
-
+    public CurrencyObject() {
     }
 
-    public CurrencyObject(int id, double converto, double convertfrom) {
-        this.id = id;
-        this.converto  = converto;
-        this.convertfrom = convertfrom;
+    public CurrencyObject(String t, String f, String af, String at) {
+        this.converto = t;
+        this.convertfrom = f;
+        this.cfrom = af;
+        this.too = at;
     }
-
-    public double getConvertfrom() {
-        return convertfrom;
-    }
-
-
-    public double getConverto() {
-        return converto;
-    }
-
 }

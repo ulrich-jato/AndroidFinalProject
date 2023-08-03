@@ -1,25 +1,32 @@
 package algonquin.cst2335.finalproject;
 
 
-import androidx.appcompat.app.AlertDialog;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
+
 
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,6 +36,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import algonquin.cst2335.finalproject.databinding.ActivityCurrencyGeneratorBinding;
+import algonquin.cst2335.finalproject.databinding.ActivityCurrencyconvertedBinding;
 
 
 public class CurrencyGenerator extends AppCompatActivity {
@@ -37,7 +45,7 @@ public class CurrencyGenerator extends AppCompatActivity {
     RequestQueue queue = null;
 
     CurrencyViewModel currencymodel;
-    ArrayList<CurrencyObject> message;
+    ArrayList<CurrencyObject> currencylist;
 
     CurrencyDao mDao;
 
@@ -46,22 +54,98 @@ public class CurrencyGenerator extends AppCompatActivity {
     Executor thread = Executors.newSingleThreadExecutor();
 
 
+    class MyRowHolder extends RecyclerView.ViewHolder {
+        TextView currencyFrom;
+        TextView currencyTo;
+        TextView amountFrom;
+        TextView amountTo;
+
+        public MyRowHolder(@NonNull View itemView) {
+            super(itemView);
+            currencyFrom = itemView.findViewById(R.id.currencyFrom);
+            currencyTo = itemView.findViewById(R.id.currencyTo);
+            amountFrom = itemView.findViewById(R.id.amountFrom);
+            amountTo = itemView.findViewById(R.id.amountTo);
+
+            itemView.setOnClickListener(click -> {
+                int position = getAbsoluteAdapterPosition();
+                CurrencyObject selected = currencylist.get(position);
+
+                currencymodel.selectedMessage.postValue(selected);
+            });
+        }
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+//        return super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.mymenu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if (item.getItemId() == R.id.help) {
+            Toast.makeText(this, "version 1.0, code by Seifeldin Eid", Toast.LENGTH_LONG).show();
+        }
+        return true;
+    }
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        binding = ActivityCurrencyGeneratorBinding.inflate(getLayoutInflater());
         super.onCreate(savedInstanceState);
-
+        binding = ActivityCurrencyGeneratorBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        currencymodel = new ViewModelProvider(this).get(CurrencyViewModel.class);
+
+        currencylist = currencymodel.currency.getValue();
+
+        setSupportActionBar(binding.toolbar);
+
+        if (currencylist == null) {
+            currencymodel.currency.postValue(currencylist = new ArrayList<CurrencyObject>());
+        }
+
+
+        binding.recycleview.setAdapter(myAdapter = new RecyclerView.Adapter<MyRowHolder>() {
+            @NonNull
+            @Override
+            public MyRowHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                ActivityCurrencyconvertedBinding binding = ActivityCurrencyconvertedBinding.inflate(getLayoutInflater());
+                return new MyRowHolder(binding.getRoot());
+            }
+
+
+            @Override
+            public void onBindViewHolder(@NonNull MyRowHolder holder, int position) {
+                CurrencyObject currency = currencylist.get(position);
+                holder.currencyFrom.setText(currency.convertfrom);
+                holder.currencyTo.setText(currency.converto);
+                holder.amountFrom.setText(currency.cfrom);
+                holder.amountTo.setText(currency.too);
+
+            }
+
+            @Override
+            public int getItemCount() {
+                return currencylist.size();
+            }
+        });
+
+
         queue = Volley.newRequestQueue(this);
 
         Spinner dropdown = findViewById(R.id.spinto);
-        String[] items = new String[]{"CAD", "USD", "DHZ"};
+        String[] items = new String[]{"CAD", "USD", "AED", "EGP", "SAR"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter);
         Spinner dropdown2 = findViewById(R.id.spinfrom);
-        String[] items2 = new String[]{"CAD", "USD", "DHZ"};
+        String[] items2 = new String[]{"CAD", "USD", "AED", "EGP", "SAR"};
         ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items2);
         dropdown2.setAdapter(adapter2);
 
@@ -71,25 +155,27 @@ public class CurrencyGenerator extends AppCompatActivity {
         if (!iataCode.equals("")) {
             binding.convertfrom.setText(iataCode);
         }
+
         binding.sendButton.setOnClickListener(clik ->
         {
-            AlertDialog.Builder builder = new AlertDialog.Builder(CurrencyGenerator.this);
-            builder.setMessage("Do You Want To Save this Currency ?");
-            builder.setTitle("Attention!");
-            builder.setNegativeButton("No", (cl, which) -> {
-                // Code to handle "No" button click
-            });
+//            AlertDialog.Builder builder = new AlertDialog.Builder(CurrencyGenerator.this);
+//            builder.setMessage("Do You Want To Save this Currency ?");
+//            builder.setTitle("Attention!");
+//            builder.setNegativeButton("No", (cl, which) -> {
+//                // Code to handle "No" button click
+//            });
+//
+//            builder.setPositiveButton("Yes", (cl, which) -> {
+//                // Code to handle "Yes" button click
+//                Snackbar.make(binding.sendButton, "You saved The currency", Snackbar.LENGTH_LONG)
+//                        .setAction("Undo", (snackbarClick) -> {
+//                            // Code to handle "Undo" action in the Snackbar
+//                        })
+//                        .show();
+//            });
+//
+//            builder.create().show();
 
-            builder.setPositiveButton("Yes", (cl, which) -> {
-                // Code to handle "Yes" button click
-                Snackbar.make(binding.sendButton, "You saved The currency", Snackbar.LENGTH_LONG)
-                        .setAction("Undo", (snackbarClick) -> {
-                            // Code to handle "Undo" action in the Snackbar
-                        })
-                        .show();
-            });
-
-            builder.create().show();
 
             if (binding.convertfrom.getText().toString().equals("")) {
                 String message = "Please enter a valid code";
@@ -100,10 +186,10 @@ public class CurrencyGenerator extends AppCompatActivity {
             editor.putString("iataCode", binding.convertfrom.getText().toString());
             editor.apply();
 
-            String convfrom = binding.spinfrom.getSelectedItem().toString();
-            String convto = binding.spinto.getSelectedItem().toString();
+            String converfrom = binding.spinfrom.getSelectedItem().toString();
+            String converto = binding.spinto.getSelectedItem().toString();
             String amount = binding.convertfrom.getText().toString();
-            String stringUrl = "https://api.getgeoapi.com/v2/currency/convert?format=json&from=" + convfrom + "&to=" + convto + "&amount=" + amount + "&api_key=199f9d4d706aa96f2918fc148ce31a12e8035972&format=json";
+            String stringUrl = "https://api.getgeoapi.com/v2/currency/convert?format=json&from=" + converfrom + "&to=" + converto + "&amount=" + amount + "&api_key=78a4cd019e48494b85eec733e0b8c3426f268ccf&format=json";
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, stringUrl, null,
                     (successfulResponse) -> {
                         JSONObject rates = null;
@@ -111,14 +197,19 @@ public class CurrencyGenerator extends AppCompatActivity {
                             rates = successfulResponse.getJSONObject("rates");
 
                             // Get the "CAD" object from "rates"
-                            JSONObject cadObject = rates.getJSONObject(convto);
+                            JSONObject cadObject = rates.getJSONObject(converto);
 
                             // Get the "rate_for_amount" value from "CAD" object
                             double rateForAmount = cadObject.getDouble("rate_for_amount");
 
                             // Now you have the rate_for_amount value, you can set it in the EditText
                             String rateText = String.valueOf(rateForAmount);
+
                             binding.too.setText(rateText);
+                            currencylist.add(new CurrencyObject(converto, converfrom, amount, rateText));
+                            myAdapter.notifyDataSetChanged();
+
+
                         } catch (JSONException e) {
                             throw new RuntimeException(e);
                         }
@@ -131,6 +222,22 @@ public class CurrencyGenerator extends AppCompatActivity {
 
 
         });
+
+        binding.recycleview.setLayoutManager(new LinearLayoutManager(this));
+
+        currencymodel.selectedMessage.observe(this, (newvalue) -> {
+            FragmentManager fMgr = getSupportFragmentManager();
+            FragmentTransaction tx = fMgr.beginTransaction();
+
+            binding.fragmentLocation.setVisibility(View.VISIBLE);
+            CurrencyDetailsFragment chatFragment = new CurrencyDetailsFragment(newvalue);
+            tx.add(R.id.fragmentLocation, chatFragment);
+            tx.replace(R.id.fragmentLocation, chatFragment);
+            tx.commit();
+            tx.addToBackStack("");
+        });
+
+
 
     }
 }
