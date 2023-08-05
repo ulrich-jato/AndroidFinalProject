@@ -18,6 +18,7 @@ import algonquin.cst2335.finalproject.R;
 public class ScoreboardActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
+    private static RecyclerView.Adapter myAdapter;
     private ScoreboardAdapter scoreboardAdapter;
     private ScoreboardViewModel viewModel;
 
@@ -27,6 +28,7 @@ public class ScoreboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scoreboard);
 
         viewModel = new ViewModelProvider(this, new ScoreboardViewModelFactory(getApplication())).get(ScoreboardViewModel.class);
+//        viewModel = new ViewModelProvider(this, new ScoreboardViewModelFactory(getApplication(), this)).get(ScoreboardViewModel.class);
 
 
         recyclerView = findViewById(R.id.recyclerViewScoreboard);
@@ -47,8 +49,8 @@ public class ScoreboardActivity extends AppCompatActivity {
 
 
     }
-}
-    class ScoreboardViewModel extends ViewModel {
+
+    static class ScoreboardViewModel extends ViewModel {
         private QuizResultRepository repository;
         private LiveData<List<QuizResult>> allQuizResults;
 
@@ -56,9 +58,36 @@ public class ScoreboardActivity extends AppCompatActivity {
             super(); // Call the ViewModel constructor
             repository = new QuizResultRepository(application);
             allQuizResults = repository.getAllQuizResultsLiveData();
+
         }
 
         public LiveData<List<QuizResult>> getAllQuizResults() {
             return allQuizResults;
         }
     }
+
+
+//    static class ScoreboardViewModel extends RecyclerView.ViewHolder {
+//        private QuizResultRepository repository;
+//        private LiveData<List<QuizResult>> allQuizResults;
+//
+//        public ScoreboardViewModel(View itemView) {
+//            super(itemView);
+//            repository = new QuizResultRepository(itemView.getContext());
+//            allQuizResults = repository.getAllQuizResultsLiveData();
+//
+//
+//            itemView.setOnClickListener(click -> {
+//                int position = getAbsoluteAdapterPosition();
+//                RecyclerView.ViewHolder newRow = myAdapter.onCreateViewHolder(null, myAdapter.getItemViewType(position));
+//
+//
+//            });
+//        }
+//
+//        public LiveData<List<QuizResult>> getAllQuizResults() {
+//            return allQuizResults;
+////        }
+//        }
+//    }
+}
