@@ -45,6 +45,7 @@ public class ScoreboardActivity extends AppCompatActivity {
             }
         });
 
+
     }
 }
     class ScoreboardViewModel extends ViewModel {

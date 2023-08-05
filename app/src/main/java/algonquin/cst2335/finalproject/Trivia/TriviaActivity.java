@@ -1,40 +1,29 @@
 package algonquin.cst2335.finalproject.Trivia;
 
-import androidx.annotation.NonNull;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.widget.EditText;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ListView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.Switch;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import algonquin.cst2335.finalproject.R;
 import algonquin.cst2335.finalproject.databinding.ActivityTriviaQuestionBinding;
 
 public class TriviaActivity extends AppCompatActivity {
@@ -153,14 +142,62 @@ public class TriviaActivity extends AppCompatActivity {
             // Format the percentage to two decimal places
 
             // Launch the QuizResultActivity
-            Intent resultIntent = new Intent(TriviaActivity.this, QuizResultActivity.class);
-            resultIntent.putExtra("username", username);
-            resultIntent.putExtra("score", score);
-            resultIntent.putExtra("count", count);
-            startActivity(resultIntent);
+//            Intent resultIntent = new Intent(TriviaActivity.this, QuizResultActivity.class);
+//            resultIntent.putExtra("username", username);
+//            resultIntent.putExtra("score", score);
+//            resultIntent.putExtra("count", count);
+//            startActivity(resultIntent);
+
+            new AlertDialog.Builder(this)
+                    .setTitle("Confirm Submission")
+                    .setMessage("Are you sure you want to submit the quiz?")
+                    .setPositiveButton("Yes", (dialog, which) -> {
+                        // User clicked "Yes", prompt for username
+                        promptForUsername();
+                    })
+                    .setNegativeButton("Cancel", (dialog, which) -> {
+                        // User clicked "Cancel", do nothing
+                    })
+                    .show();
         });
 
     }
+    private void promptForUsername() {
+        // Create an EditText view for username input
+        final EditText input = new EditText(this);
+        input.setHint("Enter your username");
+
+        // Create and show an AlertDialog to prompt for username
+        new AlertDialog.Builder(this)
+                .setTitle("Enter Username")
+                .setView(input)
+                .setPositiveButton("OK", (dialog, which) -> {
+                    // User clicked "OK", get the entered username
+                    String username = input.getText().toString().trim();
+
+                    if (!username.isEmpty()) {
+                        int score = qtnAdapter.getScore();
+                        int count = qtnList.size();
+                        double percentage = ((double) score / qtnList.size()) * 100;
+                        // Format the percentage to two decimal places
+
+                        // Launch the QuizResultActivity with username, score, and count
+                        Intent resultIntent = new Intent(TriviaActivity.this, QuizResultActivity.class);
+                        resultIntent.putExtra("username", username);
+                        resultIntent.putExtra("score", score);
+                        resultIntent.putExtra("count", count);
+                        startActivity(resultIntent);
+                    } else {
+                        Toast.makeText(this, "Please enter a valid username", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton("Cancel", (dialog, which) -> {
+                    // User clicked "Cancel", do nothing
+                })
+                .show();
 
     }
+
+
+}
 

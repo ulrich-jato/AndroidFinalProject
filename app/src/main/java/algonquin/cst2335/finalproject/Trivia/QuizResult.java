@@ -3,6 +3,8 @@ package algonquin.cst2335.finalproject.Trivia;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.text.DecimalFormat;
+
 @Entity(tableName = "quiz_results")
 public class QuizResult {
 
@@ -35,6 +37,10 @@ public class QuizResult {
         return score;
     }
     public double getPercentage(){
-        return percentage;
+
+        //Format the percentage output to 2 decimal places.
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");
+        String formattedPercentage = decimalFormat.format(percentage);
+        return Double.parseDouble(formattedPercentage);
     }
 }

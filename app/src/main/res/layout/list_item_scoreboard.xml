@@ -2,13 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:padding="16dp">
 
     <TextView
         android:id="@+id/usernameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingRight="160dp"
+        android:layout_marginLeft="46dp"
+        android:layout_marginRight="-6dp"
+        android:textAlignment="textStart"
         android:textColor="#FFFFFF"
         android:textSize="18sp" />
 
@@ -16,6 +20,9 @@
         android:id="@+id/percentageText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAlignment="textEnd"
+
+        android:layout_marginLeft="6dp"
         android:textColor="#FFFFFF"
         android:textSize="16sp" />
 

@@ -28,8 +28,8 @@ public class ScoreboardAdapter extends RecyclerView.Adapter<ScoreboardAdapter.Sc
     @Override
     public void onBindViewHolder(@NonNull ScoreboardViewHolder holder, int position) {
         QuizResult quizResult = quizResults.get(position);
-        holder.usernameText.setText("Username: " + quizResult.getUsername());
-        holder.percentageText.setText("Percentage: " + quizResult.getPercentage() + "%");
+        holder.usernameText.setText(quizResult.getUsername());
+        holder.percentageText.setText(quizResult.getPercentage() + "%");
     }
 
     @Override
