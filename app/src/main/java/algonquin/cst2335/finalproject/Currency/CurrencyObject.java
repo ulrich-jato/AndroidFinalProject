@@ -33,13 +33,14 @@ public class CurrencyObject {
         this.cfrom = af;
         this.too = at;
     }
+    public String getConverto() {
+        return converto;
+    }
     public String getConvertfrom() {
         return convertfrom;
     }
 
-    public String getConverto() {
-        return converto;
-    }
+
 
     public String getCfrom() {
         return cfrom;

@@ -3,8 +3,6 @@ package algonquin.cst2335.finalproject.Currency;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
-import static androidx.core.content.ContentProviderCompat.requireContext;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -52,7 +50,6 @@ import algonquin.cst2335.finalproject.R;
 import algonquin.cst2335.finalproject.TriviaQuestion;
 import algonquin.cst2335.finalproject.databinding.ActivityCurrencyGeneratorBinding;
 import algonquin.cst2335.finalproject.databinding.ActivityCurrencyconvertedBinding;
-import algonquin.cst2335.finalproject.databinding.CurrencySavedBinding;
 
 
 public class CurrencyGenerator extends AppCompatActivity {
@@ -64,15 +61,12 @@ public class CurrencyGenerator extends AppCompatActivity {
     CurrencyViewModel currencymodel;
     ArrayList<CurrencyObject> currencylist;
 
-    CurrencyDetailsFragment displayedFragment;
 
-    private static final String PREFS_NAME = "MyPrefsFile"; // Unique name for your SharedPreferences
-    private static final String AMOUNT_KEY = "amountKey"; // Key for storing the amount
     CurrencyDao myDAO;
     //    CurrencyDatabase myDB;
     private RecyclerView.Adapter myAdapter;
 
-    Executor thread = Executors.newSingleThreadExecutor();
+//    Executor thread = Executors.newSingleThreadExecutor();
 
 
     @Override
@@ -234,35 +228,53 @@ public class CurrencyGenerator extends AppCompatActivity {
             loadSavedConversions();
         });
     }
-    private void loadSavedConversions() {
-        try {
+//    private void loadSavedConversions() {
+//        try {
+//
+//            Executor loadThread = Executors.newSingleThreadExecutor();
+//            Toast.makeText(this, "you saved me", Toast.LENGTH_LONG).show();
+//            loadThread.execute(() -> {
+//                List<CurrencyObject> saved = myDAO.getAllmessages();
+//                Log.d("CurrencyGenerator", "Loaded " + saved.size() + " conversions from the database.");
+//                runOnUiThread(() -> {
+//                    currencylist.clear();
+//                    currencylist.addAll(saved);
+//                    if (myAdapter == null) {
+//
+//                        binding.recycleview.setAdapter((RecyclerView.Adapter) saved);
+//                        myAdapter.notifyDataSetChanged();
+//                    } else {
+//                        myAdapter.notifyDataSetChanged();
+//                    }
+//
+//                    Log.d("CurrencyGenerator", "Posted " + saved.size() + " conversions to the ViewModel.");
+//
+//
+//                });
+//            });
+//        }catch (Exception e) {
+//            e.printStackTrace();
+//            Log.e("CurrencyGenerator", "Error loading saved conversions: " + e.getMessage());
+//        }
+//    }
+private void loadSavedConversions() {
+    Executor loadThread = Executors.newSingleThreadExecutor();
+    loadThread.execute(() -> {
+        List<CurrencyObject> savedConversions = myDAO.getMessages();
+        Log.d("CurrencyGenerator", "Loaded " + savedConversions.size() + " conversions from the database.");
+        runOnUiThread(() -> {
+            currencylist.clear();
+            currencylist.addAll(savedConversions);
+            if (myAdapter == null) {
 
-            Executor loadThread = Executors.newSingleThreadExecutor();
-            Toast.makeText(this, "you saved me", Toast.LENGTH_LONG).show();
-            loadThread.execute(() -> {
-                List<CurrencyObject> saved = myDAO.getAllmessages();
-                Log.d("CurrencyActivity", "Loaded " + saved.size() + " conversions from the database.");
-                runOnUiThread(() -> {
-                    currencylist.clear();
-                    currencylist.addAll(saved);
-                    if (myAdapter == null) {
-
-                        binding.recycleview.setAdapter((RecyclerView.Adapter) saved);
-                        myAdapter.notifyDataSetChanged();
-                    } else {
-                        myAdapter.notifyDataSetChanged();
-                    }
-
-                    Log.d("CurrencyActivity", "Posted " + saved.size() + " conversions to the ViewModel.");
-
-
-                });
-            });
-        }catch (Exception e) {
-            e.printStackTrace();
-            Log.e("CurrencyActivity", "Error loading saved conversions: " + e.getMessage());
-        }
-    }
+                binding.recycleview.setAdapter(null);
+            } else {
+                myAdapter.notifyDataSetChanged();
+            }
+            Log.d("CurrencyGenerator", "Posted " + savedConversions.size() + " conversions to the ViewModel.");
+        });
+    });
+}
     class MyRowHolder extends RecyclerView.ViewHolder {
         TextView currencyFrom;
         TextView currencyTo;
@@ -281,51 +293,52 @@ public class CurrencyGenerator extends AppCompatActivity {
                 CurrencyObject selected = currencylist.get(position);
                 currencymodel.selectedMessage.postValue(selected);
             });
-//            itemView.setOnLongClickListener(longClick -> {
-//                int position = getAbsoluteAdapterPosition();
-//                CurrencyObject selected = currencylist.get(position);
-//
-//                // Show a dialog to confirm the deletion
-//                new AlertDialog.Builder(CurrencyGenerator.this)
-//                        .setTitle("Delete")
-//                        .setMessage("Do you want to delete this currency conversion?")
-//                        .setPositiveButton("Yes", (dialog, c) -> {
-//                            CurrencyObject m = currencylist.get(position);
-//                            Executor thread2 = Executors.newSingleThreadExecutor();
-//                            thread2.execute(() -> {
-//                                myDAO.delete(m);
-//                                currencylist.remove(position);
-//
-//
-//                                // Must be done on the main UI thread to update the RecyclerView
-//                                runOnUiThread(() -> {
-//                                            myAdapter.notifyDataSetChanged();
-//                                        });
-//                                    // Show a Snackbar with the option to undo the deletion
-//                                    Snackbar.make(itemView, "Currency conversion deleted!", Snackbar.LENGTH_LONG)
-//                                            .setAction("Undo", clk -> {
-//                                                Executor myThread = Executors.newSingleThreadExecutor();
-//                                                myThread.execute(() -> {
-//                                                    myDAO.insertConvertTo(m);
-//                                                    currencylist.add(position, m);
-//
-//                                                    // Must be done on the main UI thread to update the RecyclerView
-//                                                    runOnUiThread(() -> {
-//                                                        myAdapter.notifyDataSetChanged();
-//                                                    });
-//                                                });
-//                                            })
-//                                            .show();
-//                                });
-//                            })
-//
-//                        .setNegativeButton("No", (dialog, which) -> {
-//                            // Do nothing, just dismiss the dialog
-//                        })
-//                        .show();
-//
-//                return true; // Consume the event to prevent short click event triggering as well
-//            });
+
+
+            itemView.setOnLongClickListener(longClick -> {
+                int position = getAbsoluteAdapterPosition();
+                CurrencyObject selected = currencylist.get(position);
+
+                // Show a dialog to confirm the deletion
+                new AlertDialog.Builder(itemView.getContext())
+                        .setTitle("Delete")
+                        .setMessage("Do you want to delete this currency conversion?")
+                        .setPositiveButton("Yes", (dialog, c) -> {
+                            CurrencyObject m = currencylist.get(position);
+                            Executor thread2 = Executors.newSingleThreadExecutor();
+                            thread2.execute(() -> {
+                                myDAO.delete(m);
+                                currencylist.remove(position);
+
+                                // Must be done on the main UI thread to update the RecyclerView
+                                runOnUiThread(() -> {
+                                    myAdapter.notifyDataSetChanged();
+                                });
+
+                                // Show a Snackbar with the option to undo the deletion
+                                Snackbar.make(itemView, "Currency conversion deleted!", Snackbar.LENGTH_LONG)
+                                        .setAction("Undo", clk -> {
+                                            Executor myThread = Executors.newSingleThreadExecutor();
+                                            myThread.execute(() -> {
+                                                myDAO.insertConvertTo(m);
+                                                currencylist.add(position, m);
+
+                                                // Must be done on the main UI thread to update the RecyclerView
+                                                runOnUiThread(() -> {
+                                                    myAdapter.notifyDataSetChanged();
+                                                });
+                                            });
+                                        })
+                                        .show();
+                            });
+                        })
+                        .setNegativeButton("No", (dialog, which) -> {
+                            // Do nothing, just dismiss the dialog
+                        })
+                        .show();
+
+                return true; // Consume the event to prevent short click event triggering as well
+            });
         }
     }
 

@@ -21,28 +21,31 @@
         android:id="@+id/converttext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="71dp"
+        android:layout_marginTop="62dp"
+        android:layout_marginEnd="72dp"
         android:text="time goes here"
-        app:layout_constraintBottom_toBottomOf="@+id/amountf"
+        app:layout_constraintEnd_toStartOf="@+id/amountf"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/amountf" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/converttotext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginEnd="84dp"
         android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/converttext" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/amountt"
+        app:layout_constraintEnd_toStartOf="@+id/amountt"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/amountf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="99dp"
-        android:layout_marginEnd="139dp"
+        android:layout_marginTop="65dp"
+        android:layout_marginEnd="117dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -51,32 +54,21 @@
         android:id="@+id/amountt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="11dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="10dp"
         android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/amountf"
+        app:layout_constraintEnd_toEndOf="@+id/amountf"
         app:layout_constraintTop_toBottomOf="@+id/amountf" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginBottom="259dp"
         android:text="save"
-        app:layout_constraintBaseline_toBaselineOf="@+id/delete"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="110dp"
-        android:layout_marginEnd="109dp"
-        android:layout_marginBottom="305dp"
-        android:text="delete"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,7 +13,7 @@ public interface CurrencyDao {
     public long insertConvertTo(CurrencyObject m);
 
     @Query("Select * from CurrencyObject")
-    public List<CurrencyObject> getAllmessages();
+    public List<CurrencyObject> getMessages();
 
     @Delete
     void delete(CurrencyObject x);

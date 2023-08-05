@@ -3,17 +3,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.snackbar.Snackbar;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -33,6 +28,7 @@ public class CurrencyDetailsFragment extends Fragment {
         selected = m;
     }
 
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
@@ -45,13 +41,14 @@ public class CurrencyDetailsFragment extends Fragment {
         binding.amountt.setText(selected.too);
 //        binding.database.setText("Id = " + selected.id);
 
-        binding.delete.setOnClickListener(click -> {
-            deleteConversionFromDatabase();
-        });
+//        binding.delete.setOnClickListener(click -> {
+//            deleteConversionFromDatabase();
+//        });
 
         binding.button.setOnClickListener(v -> saveConversionToDatabase());
         return binding.getRoot();
     }
+
     private void saveConversionToDatabase() {
         CurrencyObject newConversion = new CurrencyObject(selected.convertfrom, selected.converto, selected.cfrom, selected.too);
         Executor thread = Executors.newSingleThreadExecutor();
@@ -59,7 +56,7 @@ public class CurrencyDetailsFragment extends Fragment {
             @Override
             public void run() {
                 CurrencyDao myDAO = CurrencyDatabase.getInstance(requireContext()).cmDAO();
-                List<CurrencyObject> allConversions = myDAO.getAllmessages();
+                List<CurrencyObject> allConversions = myDAO.getMessages();
                 for (CurrencyObject conversion : allConversions) {
                     if (conversion.getToo().equals(newConversion.getToo())) {
                         requireActivity().runOnUiThread(new Runnable() {
@@ -90,22 +87,63 @@ public class CurrencyDetailsFragment extends Fragment {
             }
         });
     }
-    private void deleteConversionFromDatabase() {
-
-        if (selected != null) {
-            Executor thread = Executors.newSingleThreadExecutor();
-            thread.execute(() -> {
-                CurrencyDao myDAO = CurrencyDatabase.getInstance(requireContext()).cmDAO();
-                myDAO.delete(selected);
-
-                requireActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(requireContext(), "Conversion deleted!", Toast.LENGTH_SHORT).show();
-
-                    }
-                });
+//    private void deleteConversionFromDatabase() {
+//
+//        if (selected != null) {
+//            Executor thread = Executors.newSingleThreadExecutor();
+//            thread.execute(() -> {
+//                CurrencyDao myDAO = CurrencyDatabase.getInstance(requireContext()).cmDAO();
+//                myDAO.delete(selected);
+//
+//                requireActivity().runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        Toast.makeText(requireContext(), "Conversion deleted!", Toast.LENGTH_SHORT).show();
+//
+//                    }
+//                });
+//            });
+//        }
+//    }
+private void deleteConversionFromDatabase () {
+//
+    if (selected != null) {
+        Executor thread = Executors.newSingleThreadExecutor();
+        thread.execute(()-> {
+            CurrencyDao myDAO = CurrencyDatabase.getInstance(requireContext()).cmDAO();
+            myDAO.delete(selected);
+            requireActivity().runOnUiThread(()-> {
+                        Toast.makeText(requireContext(), "Conversion deleted!",Toast.LENGTH_SHORT).show();
             });
-        }
-    }
+        });
 }
+}
+}
+//    Executor thread = Executors.newSingleThreadExecutor();
+//    thread.execute(new Runnable() {
+//        @Override
+//            try {
+//                // Your delete operation
+//                CurrencyDao myDAO = CurrencyDatabase.getInstance(requireContext()).cmDAO();
+//                myDAO.delete(selected);
+//
+//                requireActivity().runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        Toast.makeText(requireContext(), "Conversion deleted!", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//                requireActivity().runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        Toast.makeText(requireContext(), "Error deleting conversion!", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//            }
+//        }
+//    });
+//}
+//
+//}
