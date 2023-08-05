@@ -4,4 +4,7 @@
     <string name="currency_converter">Currency Converter</string>
     <string name="trivia_question">Trivia Question Database</string>
     <string name="bear_image">Bear Image Generator</string>
+    <string name="history">saved list</string>
+    <string name="convert">convert</string>
+    <string name="safe">safe</string>
 </resources>

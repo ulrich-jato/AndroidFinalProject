@@ -64,11 +64,11 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="259dp"
-        android:text="save"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/safe"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.43"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="283dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

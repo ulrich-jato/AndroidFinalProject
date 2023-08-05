@@ -5,4 +5,7 @@
     <string name="currency_converter">Convertisseur de Devises</string>
     <string name="trivia_question">Questions Anecdotiques</string>
     <string name="bear_image">Générateur d\'Images d\'Ours</string>
+    <string name="history">liste enregistrée</string>
+    <string name="convert">convertir</string>
+    <string name="safe">sauvegarder</string>
 </resources>

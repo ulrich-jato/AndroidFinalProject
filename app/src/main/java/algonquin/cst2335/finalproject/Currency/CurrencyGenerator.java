@@ -90,7 +90,8 @@ public class CurrencyGenerator extends AppCompatActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(CurrencyGenerator.this);
             builder.setTitle("HELP: ")
                     .setMessage("1.Input a number\n2.Pick a currency (from)\n3.Pick a currency (to)\n" +
-                            "4.Click CONVERT to make a conversion\n5.Click ARROWS between currencies to swap them")
+                            "4.Click CONVERT to make a conversion\n5.click on it, then click on the save button to save\n"+
+                            "6.Long click on it, if you wanna delete\n 7. click on saved list, to show you the currencies you saved.")
                     .setPositiveButton("OK", (dialog, click) -> {
                     }).create().show();
         }
@@ -196,6 +197,8 @@ public class CurrencyGenerator extends AppCompatActivity {
                             String rateText = String.valueOf(rateForAmount);
 
                             binding.too.setText(rateText);
+                            currencylist.clear();
+                            myAdapter.notifyDataSetChanged();
                             currencylist.add(new CurrencyObject(converto, converfrom, amount, rateText));
                             myAdapter.notifyDataSetChanged();
 
@@ -228,35 +231,7 @@ public class CurrencyGenerator extends AppCompatActivity {
             loadSavedConversions();
         });
     }
-//    private void loadSavedConversions() {
-//        try {
-//
-//            Executor loadThread = Executors.newSingleThreadExecutor();
-//            Toast.makeText(this, "you saved me", Toast.LENGTH_LONG).show();
-//            loadThread.execute(() -> {
-//                List<CurrencyObject> saved = myDAO.getAllmessages();
-//                Log.d("CurrencyGenerator", "Loaded " + saved.size() + " conversions from the database.");
-//                runOnUiThread(() -> {
-//                    currencylist.clear();
-//                    currencylist.addAll(saved);
-//                    if (myAdapter == null) {
-//
-//                        binding.recycleview.setAdapter((RecyclerView.Adapter) saved);
-//                        myAdapter.notifyDataSetChanged();
-//                    } else {
-//                        myAdapter.notifyDataSetChanged();
-//                    }
-//
-//                    Log.d("CurrencyGenerator", "Posted " + saved.size() + " conversions to the ViewModel.");
-//
-//
-//                });
-//            });
-//        }catch (Exception e) {
-//            e.printStackTrace();
-//            Log.e("CurrencyGenerator", "Error loading saved conversions: " + e.getMessage());
-//        }
-//    }
+
 private void loadSavedConversions() {
     Executor loadThread = Executors.newSingleThreadExecutor();
     loadThread.execute(() -> {

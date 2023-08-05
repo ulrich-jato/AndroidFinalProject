@@ -39,11 +39,7 @@ public class CurrencyDetailsFragment extends Fragment {
         binding.converttext.setText(selected.convertfrom);
         binding.amountf.setText(selected.cfrom);
         binding.amountt.setText(selected.too);
-//        binding.database.setText("Id = " + selected.id);
 
-//        binding.delete.setOnClickListener(click -> {
-//            deleteConversionFromDatabase();
-//        });
 
         binding.button.setOnClickListener(v -> saveConversionToDatabase());
         return binding.getRoot();
@@ -87,24 +83,7 @@ public class CurrencyDetailsFragment extends Fragment {
             }
         });
     }
-//    private void deleteConversionFromDatabase() {
-//
-//        if (selected != null) {
-//            Executor thread = Executors.newSingleThreadExecutor();
-//            thread.execute(() -> {
-//                CurrencyDao myDAO = CurrencyDatabase.getInstance(requireContext()).cmDAO();
-//                myDAO.delete(selected);
-//
-//                requireActivity().runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        Toast.makeText(requireContext(), "Conversion deleted!", Toast.LENGTH_SHORT).show();
-//
-//                    }
-//                });
-//            });
-//        }
-//    }
+
 private void deleteConversionFromDatabase () {
 //
     if (selected != null) {
@@ -119,31 +98,3 @@ private void deleteConversionFromDatabase () {
 }
 }
 }
-//    Executor thread = Executors.newSingleThreadExecutor();
-//    thread.execute(new Runnable() {
-//        @Override
-//            try {
-//                // Your delete operation
-//                CurrencyDao myDAO = CurrencyDatabase.getInstance(requireContext()).cmDAO();
-//                myDAO.delete(selected);
-//
-//                requireActivity().runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        Toast.makeText(requireContext(), "Conversion deleted!", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//                requireActivity().runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        Toast.makeText(requireContext(), "Error deleting conversion!", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//            }
-//        }
-//    });
-//}
-//
-//}
