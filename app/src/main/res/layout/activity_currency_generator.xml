@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CurrencyGenerator">
+    tools:context=".Currency.CurrencyGenerator">
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleview"
         android:layout_width="300dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/convertfrom"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/convertfrom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -100,13 +101,18 @@
         app:layout_constraintEnd_toStartOf="@+id/sendButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/sendButton" />
+
     <FrameLayout
-        android:id="@+id/fragmentLocation"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:id="@+id/fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="#B59E71"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/recycleview"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></FrameLayout>
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"

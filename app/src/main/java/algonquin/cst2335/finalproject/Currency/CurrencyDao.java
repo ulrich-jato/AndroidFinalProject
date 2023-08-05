@@ -1,4 +1,4 @@
-package algonquin.cst2335.finalproject;
+package algonquin.cst2335.finalproject.Currency;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -17,8 +17,5 @@ public interface CurrencyDao {
 
     @Delete
     void delete(CurrencyObject x);
-
-    @Query("DELETE FROM CurrencyObject")
-    void clear();
 
 }

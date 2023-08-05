@@ -1,67 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!--    <TextView-->
+    <!--        android:id="@+id/database"-->
+    <!--        android:layout_width="176dp"-->
+    <!--        android:layout_height="35dp"-->
+    <!--        android:layout_marginStart="32dp"-->
+    <!--        android:layout_marginTop="32dp"-->
+    <!--        android:layout_marginBottom="32dp"-->
+    <!--        android:text="Message goes here"-->
+    <!--        app:layout_constraintBottom_toTopOf="@+id/converttext"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
-<!--    <FrameLayout-->
-<!--        android:id="@+id/fragmentLocation"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        android:background="@color/my_secondary"-->
-<!--        app:layout_constraintTop_toTopOf="parent"/>-->
     <TextView
-        android:id="@+id/converText"
-        android:layout_width="176dp"
-        android:layout_height="35dp"
+        android:id="@+id/converttext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="32dp"
-        android:text="Message goes here"
+        android:text="time goes here"
+        app:layout_constraintBottom_toBottomOf="@+id/amountf"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/amountf" />
+
+    <TextView
+        android:id="@+id/converttotext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/converttext" />
+
+    <TextView
+        android:id="@+id/amountf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="99dp"
+        android:layout_marginEnd="139dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/convertfromText"
+        android:id="@+id/amountt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="time goes here"
-        app:layout_constraintStart_toStartOf="@+id/converText"
-        app:layout_constraintTop_toBottomOf="@+id/converText" />
-
-    <TextView
-        android:id="@+id/databaseText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
         android:layout_marginTop="32dp"
         android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/convertfromText"
-        app:layout_constraintTop_toBottomOf="@+id/convertfromText" />
-<!--    <TextView-->
-<!--        android:id="@+id/databaseText"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="32dp"-->
-<!--        android:text="TextView"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/convertfromText"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/convertfromText" />-->
-<!--    <TextView-->
-<!--        android:id="@+id/databaseText"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="32dp"-->
-<!--        android:text="TextView"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/convertfromText"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/convertfromText" />-->
-<!--    <TextView-->
-<!--        android:id="@+id/databaseText"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="32dp"-->
-<!--        android:text="TextView"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/convertfromText"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/convertfromText" />-->
+        app:layout_constraintStart_toStartOf="@+id/amountf"
+        app:layout_constraintTop_toBottomOf="@+id/amountf" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="save"
+        app:layout_constraintBaseline_toBaselineOf="@+id/delete"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="110dp"
+        android:layout_marginEnd="109dp"
+        android:layout_marginBottom="305dp"
+        android:text="delete"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
