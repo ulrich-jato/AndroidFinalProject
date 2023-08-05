@@ -2,10 +2,24 @@ package algonquin.cst2335.finalproject.bearData;
 
 import android.graphics.Bitmap;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
+@Entity
+@TypeConverters(BitmapTypeConverter.class)
 public class ImageEntity {
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
     private long id;
+    @ColumnInfo(name = "Height")
     private int height ;
+
+    @ColumnInfo(name = "width")
     private int weight;
+
+    @ColumnInfo(name = "Image")
     private Bitmap image ;
 
     public ImageEntity(){}

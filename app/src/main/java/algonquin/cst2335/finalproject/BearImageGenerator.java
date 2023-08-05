@@ -65,7 +65,7 @@ public class BearImageGenerator extends AppCompatActivity implements ImageDetail
         queue = Volley.newRequestQueue(this);
         setContentView(binding.getRoot());
 
-        setSupportActionBar(binding.myToolbar);
+        setSupportActionBar(binding.bearToolbar);
 
         //Save the selected flight details to the Room database
         ImageDatabase db = Room.databaseBuilder(getApplicationContext(),
@@ -76,11 +76,11 @@ public class BearImageGenerator extends AppCompatActivity implements ImageDetail
             FragmentManager fMgr = getSupportFragmentManager();
             FragmentTransaction tx = fMgr.beginTransaction();
 
-            boolean isSavedFlight = isImageSavedInDatabase(newValue);
-            ImageDetailsFragment flightFragment = new ImageDetailsFragment( newValue, isSavedFlight);
-            flightFragment.setOnImageDetailsListener(this);
-            tx.add(R.id.fragmentLocation, flightFragment);
-            tx.replace(R.id.fragmentLocation, flightFragment);
+            boolean isSavedImage = isImageSavedInDatabase(newValue);
+            ImageDetailsFragment imageFragment = new ImageDetailsFragment( newValue, isSavedImage);
+            imageFragment.setOnImageDetailsListener(this);
+            tx.add(R.id.fragmentLocation, imageFragment);
+            tx.replace(R.id.fragmentLocation, imageFragment);
             tx.commit();
             tx.addToBackStack("");
         });
@@ -241,21 +241,27 @@ public class BearImageGenerator extends AppCompatActivity implements ImageDetail
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        getMenuInflater().inflate(R.menu.my_menu,menu);
+        getMenuInflater().inflate(R.menu.bear_menu,menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if( item.getItemId() == R.id.menu_flight ) {
-            startActivity(new Intent(this, AviationTracker.class));
-        } else if( item.getItemId() == R.id.menu_help ){
-            AlertDialog.Builder builder = new AlertDialog.Builder(AviationTracker.this)
-                    .setMessage(R.string.aviation_help_message)
+        if( item.getItemId() == R.id.menu_bear_home ) {
+            startActivity(new Intent(this, MainActivity.class));
+        } else if( item.getItemId() == R.id.menu_bear_help ){
+            AlertDialog.Builder builder = new AlertDialog.Builder(BearImageGenerator.this)
+                    .setMessage("This is the instruction on how to use Bear Image Generator Application")
                     .setTitle("Instructions!")
                     .setPositiveButton("OK", (cl, which) -> {
                     });
             builder.create().show();
+        } else if (item.getItemId() == R.id.menu_bear_aviation) {
+            startActivity(new Intent(this, AviationTracker.class));
+        }else if (item.getItemId() == R.id.menu_bear_currency) {
+            startActivity(new Intent(this, CurrencyGenerator.class));
+        }else if (item.getItemId() == R.id.menu_bear_trivia) {
+            startActivity(new Intent(this, TriviaQuestion.class));
         }
         return true;
     }

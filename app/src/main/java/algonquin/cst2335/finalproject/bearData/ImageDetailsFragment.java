@@ -42,13 +42,13 @@ public class ImageDetailsFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
 
         ImageDetailsBinding binding = ImageDetailsBinding.inflate(inflater);
-        //Save the selected flight details to the Room database
+        //Save the selected image details to the Room database
         ImageDatabase db = Room.databaseBuilder(requireContext().getApplicationContext(), ImageDatabase.class, "ImageDatabase").build();
-        // Get the FlightDAO from the database.
+        // Get the ImageDAO from the database.
         imageDAO = db.imageDAO();
         binding.imageViewDetails.setImageBitmap(selected.getImage());
-        binding.heightText.setText(selected.getHeight());
-        binding.widthText.setText(selected.getWeight());
+        binding.heightText.setText(String.valueOf(selected.getHeight()));
+        binding.widthText.setText(String.valueOf(selected.getWeight()));
 
         if(isSavedImage){
             // Display the details with delete button
@@ -82,7 +82,7 @@ public class ImageDetailsFragment extends Fragment {
     }
 
     private void saveImageDetails(){
-        // Check if the selected flight already exists in the database.
+        // Check if the selected image already exists in the database.
         long selectedId = selected.getId();
         // Create an Executor to run the database operation on a separate thread.
         Executor thread1 = Executors.newSingleThreadExecutor();
@@ -90,25 +90,25 @@ public class ImageDetailsFragment extends Fragment {
             ImageEntity existingImage = imageDAO.getImageById(selectedId);
 
             if (existingImage != null) {
-                // Flight already exists in the database, show a message to the user.
+                // image already exists in the database, show a message to the user.
                 requireActivity().runOnUiThread(() -> {
-                    Snackbar.make(requireView(), "This Flight has already been saved!", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(requireView(), "This Image has already been saved!", Snackbar.LENGTH_SHORT).show();
                 });
             } else {
-                // Selected flight does not exist in the database, proceed with saving.
+                // Selected image does not exist in the database, proceed with saving.
                 long id = imageDAO.insertImage(selected);
                 selected.setId(id);
 
                 // Make sure to update the UI components on the main thread.
                 requireActivity().runOnUiThread(() -> {
                     if (id != -1) {
-                        Snackbar.make(requireView(), "Flight details saved!", Snackbar.LENGTH_LONG)
+                        Snackbar.make(requireView(), "Image details saved!", Snackbar.LENGTH_LONG)
                                 .setAction("Undo", (snackbarClick) -> {
                                     undoSavedImageDetails(selected);
                                 })
                                 .show();
                     } else {
-                        Snackbar.make(requireView(), "Failed to save flight details!", Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(requireView(), "Failed to save image details!", Snackbar.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -137,7 +137,7 @@ public class ImageDetailsFragment extends Fragment {
 
             if (existingImage == null) {
                 requireActivity().runOnUiThread(() -> {
-                    Snackbar.make(requireView(), "This Flight does not exist in the database!", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(requireView(), "This Image does not exist in the database!", Snackbar.LENGTH_SHORT).show();
                 });
             } else {
                 imageDAO.deleteImage(selected);
@@ -146,7 +146,7 @@ public class ImageDetailsFragment extends Fragment {
                     if (imageDetailsListener != null) {
                         imageDetailsListener.onImageDeleted(selected);
                     }
-                    Snackbar.make(requireView(), "Flight details deleted!", Snackbar.LENGTH_SHORT)
+                    Snackbar.make(requireView(), "Image details deleted!", Snackbar.LENGTH_SHORT)
                             .setAction("Undo", (snackbarClick) -> {
                                 undoDeleteddImageDetails(selected);
                             })
@@ -167,7 +167,7 @@ public class ImageDetailsFragment extends Fragment {
 
             // Make sure to update the UI components on the main thread.
             requireActivity().runOnUiThread(() -> {
-                Snackbar.make(requireView(), "Flight details undone!", Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(requireView(), "Image details undone!", Snackbar.LENGTH_SHORT).show();
             });
 
         });
@@ -186,7 +186,7 @@ public class ImageDetailsFragment extends Fragment {
                 if (imageDetailsListener != null) {
                     imageDetailsListener.onImageSaved(selected);
                 }
-                Snackbar.make(requireView(), "Flight details undone!", Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(requireView(), "Image details undone!", Snackbar.LENGTH_SHORT).show();
             });
 
         });
