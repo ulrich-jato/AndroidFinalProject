@@ -3,19 +3,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/icon_flight"
-        android:title="aviation_stack_flight_tracker"
+        android:title="@string/aviation_tracker"
         app:showAsAction="never" />
     <item
         android:id="@+id/icon_question"
-        android:title="trivia_question_database"
+        android:title="@string/trivia_question"
         app:showAsAction="never" />
     <item
         android:id="@+id/icon_bear"
-        android:title="bear_image_generator"
+        android:title="@string/bear_image"
         app:showAsAction="never" />
     <item
         android:id="@+id/icon_back"
-        android:title="Go Home"
+        android:title="@string/main"
         app:showAsAction="never" />
     <item
         android:id="@+id/help"

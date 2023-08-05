@@ -8,4 +8,16 @@
     <string name="history">liste enregistrée</string>
     <string name="convert">convertir</string>
     <string name="safe">sauvegarder</string>
+    <string name="message">"1.Saisissez un nombre\n 2.Choisissez une devise (de)\n 3.Choisissez une devise (vers)\n"
+                            "4.Cliquez sur CONVERT pour effectuer une conversion\n 5.cliquez dessus, puis cliquez sur le bouton Enregistrer pour enregistrer\n"
+                            "6.Cliquez longuement dessus, si vous voulez supprimer\n 7. cliquez sur la liste enregistrée, pour vous montrer les devises que vous avez enregistrées."</string>
+    <string name="main">"page d'accueil"</string>
+    <string name="nofound">"Aucune devise enregistrée n'a été trouvée."</string>
+    <string name="valid">Veuillez entrer un code valide</string>
+    <string name="delete">Voulez-vous supprimer cette conversion de devise ?</string>
+    <string name="deleted">Conversion de devise supprimée !</string>
+    <string name="undo">annuler</string>
+    <string name="csaved">La conversion est déjà enregistrée.</string>
+    <string name="saved">Conversion enregistrée !</string>
+
 </resources>
