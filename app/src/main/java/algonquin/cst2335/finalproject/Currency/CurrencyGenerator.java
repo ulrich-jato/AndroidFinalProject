@@ -50,25 +50,48 @@ import algonquin.cst2335.finalproject.R;
 import algonquin.cst2335.finalproject.TriviaQuestion;
 import algonquin.cst2335.finalproject.databinding.ActivityCurrencyGeneratorBinding;
 import algonquin.cst2335.finalproject.databinding.ActivityCurrencyconvertedBinding;
-
-
+/**
+ * CurrencyGenerator is an activity that allows the user to perform currency conversions
+ * using an API. It also provides the functionality to save and view previously converted
+ * currency values. The activity extends AppCompatActivity and handles user interactions
+ * related to currency conversions and data presentation.
+ */
 public class CurrencyGenerator extends AppCompatActivity {
+    /**
+     * ActivityCurrencyGeneratorBinding represents the ViewBinding for the CurrencyGenerator activity.
+     * It is used to access and bind views in the layout XML file.
+     */
     ActivityCurrencyGeneratorBinding binding;
-
+    /**
+     * RequestQueue used to handle API requests using Volley library.
+     */
 
     RequestQueue queue = null;
 
+    /**
+     * ViewModel instance to hold the data for the Currency conversions.
+     */
     CurrencyViewModel currencymodel;
+    /**
+     * ArrayList to hold the list of CurrencyObject representing the converted currency values.
+     */
     ArrayList<CurrencyObject> currencylist;
 
-
+    /**
+     * CurrencyDao instance to interact with the Room database for Currency conversions.
+     */
     CurrencyDao myDAO;
-    //    CurrencyDatabase myDB;
+    /**
+     * RecyclerView adapter used to display the converted currency items.
+     */
     private RecyclerView.Adapter myAdapter;
 
-//    Executor thread = Executors.newSingleThreadExecutor();
 
-
+    /**
+     * This method is called when the activity is first created. It initializes the views,
+     * sets up RecyclerView, and handles user interactions related to currency conversions
+     * and saving the converted currency data.
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.mymenu, menu);
@@ -89,9 +112,7 @@ public class CurrencyGenerator extends AppCompatActivity {
         } else if (item.getItemId() == R.id.help) {
             AlertDialog.Builder builder = new AlertDialog.Builder(CurrencyGenerator.this);
             builder.setTitle("HELP: ")
-                    .setMessage("1.Input a number\n2.Pick a currency (from)\n3.Pick a currency (to)\n" +
-                            "4.Click CONVERT to make a conversion\n5.click on it, then click on the save button to save\n"+
-                            "6.Long click on it, if you wanna delete\n 7. click on saved list, to show you the currencies you saved.")
+                    .setMessage(R.string.message)
                     .setPositiveButton("OK", (dialog, click) -> {
                     }).create().show();
         }
@@ -169,8 +190,7 @@ public class CurrencyGenerator extends AppCompatActivity {
 
 
             if (binding.convertfrom.getText().toString().equals("")) {
-                String message = "Please enter a valid code";
-                Toast.makeText(this, message, LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.valid, LENGTH_SHORT).show();
                 return;
             }
             SharedPreferences.Editor editor = prefs.edit();
@@ -232,34 +252,50 @@ public class CurrencyGenerator extends AppCompatActivity {
         });
     }
 
-private void loadSavedConversions() {
-    Executor loadThread = Executors.newSingleThreadExecutor();
-    loadThread.execute(() -> {
-        List<CurrencyObject> savedConversions = myDAO.getMessages();
-        Log.d("CurrencyGenerator", "Loaded " + savedConversions.size() + " conversions from the database.");
-        runOnUiThread(() -> {
-            currencylist.clear();
-            currencylist.addAll(savedConversions);
-            if (myAdapter == null) {
-
-                binding.recycleview.setAdapter(null);
-            } else {
-                myAdapter.notifyDataSetChanged();
-            }
-            Log.d("CurrencyGenerator", "Posted " + savedConversions.size() + " conversions to the ViewModel.");
+    private void loadSavedConversions() {
+        Executor loadThread = Executors.newSingleThreadExecutor();
+        loadThread.execute(() -> {
+            List<CurrencyObject> savedConversions = myDAO.getMessages();
+            Log.d("CurrencyGenerator", "Loaded " + savedConversions.size() + " conversions from the database.");
+            runOnUiThread(() -> {
+                if (savedConversions.isEmpty()) {
+                    // Show a Snackbar or Toast indicating that there are no saved currencies
+                    Snackbar.make(binding.getRoot(), R.string.nofound, Snackbar.LENGTH_LONG).show();
+                } else {
+                    currencylist.clear();
+                    currencylist.addAll(savedConversions);
+                    if (myAdapter == null) {
+                        binding.recycleview.setAdapter(null);
+                    } else {
+                        myAdapter.notifyDataSetChanged();
+                    }
+                    Log.d("CurrencyGenerator", "Posted " + savedConversions.size() + " conversions to the ViewModel.");
+                }
+            });
         });
-    });
-}
+
+    }
+
+    /**
+     * MyRowHolder is an inner class that represents the ViewHolder for the RecyclerView in the
+     * CurrencyGenerator activity. It holds references to the views in each row of the RecyclerView
+     * and handles click and long click events on the RecyclerView items.
+     */
     class MyRowHolder extends RecyclerView.ViewHolder {
         TextView currencyFrom;
         TextView currencyTo;
         TextView amountFrom;
         TextView amountTo;
 
+        /**
+         * Constructor for MyRowHolder that initializes the views in the RecyclerView row.
+         *
+         * @param itemView The root view of the RecyclerView row.
+         */
         public MyRowHolder(@NonNull View itemView) {
             super(itemView);
-            currencyFrom = itemView.findViewById(R.id.currencyFrom);
-            currencyTo = itemView.findViewById(R.id.currencyTo);
+            currencyFrom = itemView.findViewById(R.id.currencyTo);
+            currencyTo = itemView.findViewById(R.id.currencyFrom);
             amountFrom = itemView.findViewById(R.id.amountFrom);
             amountTo = itemView.findViewById(R.id.amountTo);
 
@@ -269,7 +305,6 @@ private void loadSavedConversions() {
                 currencymodel.selectedMessage.postValue(selected);
             });
 
-
             itemView.setOnLongClickListener(longClick -> {
                 int position = getAbsoluteAdapterPosition();
                 CurrencyObject selected = currencylist.get(position);
@@ -277,7 +312,7 @@ private void loadSavedConversions() {
                 // Show a dialog to confirm the deletion
                 new AlertDialog.Builder(itemView.getContext())
                         .setTitle("Delete")
-                        .setMessage("Do you want to delete this currency conversion?")
+                        .setMessage(R.string.delete)
                         .setPositiveButton("Yes", (dialog, c) -> {
                             CurrencyObject m = currencylist.get(position);
                             Executor thread2 = Executors.newSingleThreadExecutor();
@@ -291,20 +326,20 @@ private void loadSavedConversions() {
                                 });
 
                                 // Show a Snackbar with the option to undo the deletion
-                                Snackbar.make(itemView, "Currency conversion deleted!", Snackbar.LENGTH_LONG)
-                                        .setAction("Undo", clk -> {
-                                            Executor myThread = Executors.newSingleThreadExecutor();
-                                            myThread.execute(() -> {
-                                                myDAO.insertConvertTo(m);
-                                                currencylist.add(position, m);
+                                Snackbar snackbar = Snackbar.make(itemView, R.string.deleted, Snackbar.LENGTH_LONG);
+                                snackbar.setAction(R.string.undo, clk -> {
+                                    Executor myThread = Executors.newSingleThreadExecutor();
+                                    myThread.execute(() -> {
+                                        myDAO.insertConvertTo(m);
+                                        currencylist.add(position, m);
 
-                                                // Must be done on the main UI thread to update the RecyclerView
-                                                runOnUiThread(() -> {
-                                                    myAdapter.notifyDataSetChanged();
-                                                });
-                                            });
-                                        })
-                                        .show();
+                                        // Must be done on the main UI thread to update the RecyclerView
+                                        runOnUiThread(() -> {
+                                            myAdapter.notifyDataSetChanged();
+                                        });
+                                    });
+                                });
+                                snackbar.show();
                             });
                         })
                         .setNegativeButton("No", (dialog, which) -> {
@@ -316,5 +351,4 @@ private void loadSavedConversions() {
             });
         }
     }
-
 }
