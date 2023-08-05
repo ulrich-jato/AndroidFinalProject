@@ -24,7 +24,6 @@ import algonquin.cst2335.finalproject.databinding.DetailsLayoutBinding;
  */
 public class FlightDetailsFragment extends Fragment {
 
-    // Fields
     /**
      * Represents the selected flight whose details are being displayed.
      */
@@ -271,9 +270,9 @@ public class FlightDetailsFragment extends Fragment {
 
         // Perform the database operation on the separate thread.
         thread1.execute(() -> {
-            long id = flightDAO.insertFlight(flight);
-            flight.setId(id);
-
+            //long id = flightDAO.insertFlight(flight);
+            //flight.setId(id);
+            flightDAO.insertFlight(flight);
             // Make sure to update the UI components on the main thread.
             requireActivity().runOnUiThread(() -> {
                 if (flightDetailsListener != null) {

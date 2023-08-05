@@ -206,7 +206,7 @@ public class AviationTracker extends AppCompatActivity implements FlightDetailsF
 
                                 // add the code to handle delay
                                 Object delayObject = departure.opt("delay");
-                                if (delayObject == null) {
+                                if (delayObject.equals(null)) {
                                     delay = "N/A";
                                 } else if (delayObject instanceof Integer) {
                                     int delayInteger = (int) delayObject;
@@ -397,6 +397,7 @@ public class AviationTracker extends AppCompatActivity implements FlightDetailsF
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
         // Inflate the menu resource file (my_menu.xml) to create menu items
         getMenuInflater().inflate(R.menu.my_menu, menu);
         return true;
