@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#BFBFED"
-            app:layout_constraintTop_toBottomOf="@+id/myToolbar"/>
+            app:layout_constraintTop_toBottomOf="@+id/bearToolbar"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycleView"
