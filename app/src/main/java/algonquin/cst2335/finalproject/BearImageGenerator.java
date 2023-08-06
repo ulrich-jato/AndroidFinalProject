@@ -87,7 +87,7 @@ public class BearImageGenerator extends AppCompatActivity implements ImageDetail
 
         SharedPreferences prefs = getSharedPreferences("ImageData", Context.MODE_PRIVATE);
         String height =  prefs.getString("height", "");
-        String width =  prefs.getString("height", "");
+        String width =  prefs.getString("width", "");
         if (!height.equals("")){
             binding.height.setText(height);
         }
@@ -130,10 +130,16 @@ public class BearImageGenerator extends AppCompatActivity implements ImageDetail
                 }
             }, 1024, 1024, ImageView.ScaleType.CENTER, null,
                     (error ) -> {
-                    int j = 10;
+
             });
 
             queue.add(imgReq);
+
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString("height", binding.height.getText().toString());
+            editor.putString("width", binding.width.getText().toString());
+            editor.apply();
+
             binding.height.setText("");
             binding.width.setText("");
         });
