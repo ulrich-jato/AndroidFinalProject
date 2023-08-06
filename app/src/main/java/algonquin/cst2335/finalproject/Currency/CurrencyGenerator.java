@@ -1,3 +1,9 @@
+/**
+ * done by Seifeldin Eid
+ * Student #  041084185
+ * Final project
+ */
+
 package algonquin.cst2335.finalproject.Currency;
 
 
