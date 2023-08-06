@@ -34,4 +34,10 @@ public class QuizResultRepository {
     public LiveData<List<QuizResult>> getAllQuizResultsLiveData() {
         return quizResultDao.getAllQuizResultsLiveData();
     }
+
+    public void deleteQuizResult(QuizResult quizResult){
+        QuizResultDatabase.databaseWriteExecutor.execute(() ->{
+            quizResultDao.deleteMessage(quizResult);
+        });
+    }
 }

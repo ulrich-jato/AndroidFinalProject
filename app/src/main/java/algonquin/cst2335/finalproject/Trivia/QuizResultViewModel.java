@@ -22,4 +22,5 @@ public class QuizResultViewModel extends AndroidViewModel {
     public LiveData<List<QuizResult>> getAllQuizResults() {
         return allQuizResults;
     }
+
 }

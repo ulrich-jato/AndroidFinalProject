@@ -85,7 +85,19 @@ public class ScoreboardAdapter extends RecyclerView.Adapter<ScoreboardAdapter.Sc
             });
         }
     }
+    public QuizResult getItem(int position) {
+        return quizResults.get(position);
+    }
 
+    public void addItem(int position, QuizResult quizResult) {
+        quizResults.add(position, quizResult);
+        notifyItemInserted(position);
+    }
+
+    public void removeItem(int position) {
+        quizResults.remove(position);
+        notifyItemRemoved(position);
+    }
 
 }
  interface OnItemClickListener {
