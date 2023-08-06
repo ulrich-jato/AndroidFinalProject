@@ -7,6 +7,17 @@
     android:background="#21284E"
     tools:context=".Trivia.ScoreboardActivity">
 
+    <FrameLayout
+        android:id="@+id/fragmentLocation"
+        android:layout_width="409dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="16dp"
+        android:background="#1A237E"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></FrameLayout>
+
+
     <TextView
         android:id="@+id/textViewScoreboard"
         android:layout_width="wrap_content"
@@ -21,14 +32,13 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewScoreboard"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="418dp"
+        android:layout_height="381dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewScoreboard"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/fragmentLocation" />
 
     <TextView
         android:id="@+id/textView7"

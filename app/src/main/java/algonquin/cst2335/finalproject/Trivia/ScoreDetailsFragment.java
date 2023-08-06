@@ -48,8 +48,8 @@ public class ScoreDetailsFragment extends Fragment {
         DetailsLayoutBinding binding = DetailsLayoutBinding.inflate(inflater);
 
         binding.userText.setText(selected.getUsername());
-        binding.sizeText.setText(selected.getScore());
-        binding.outcomeText.setText((int) selected.getPercentage());
+        binding.sizeText.setText(String.valueOf(selected.getScore()));
+        binding.outcomeText.setText(String.valueOf(selected.getPercentage()));
 
         return binding.getRoot();
     }
