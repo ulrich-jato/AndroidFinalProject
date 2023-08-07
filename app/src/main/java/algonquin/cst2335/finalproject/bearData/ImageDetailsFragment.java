@@ -15,23 +15,36 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import algonquin.cst2335.finalproject.databinding.ImageDetailsBinding;
-
+/**
+ * A Fragment for displaying and managing image details.
+ */
 public class ImageDetailsFragment extends Fragment {
     ImageEntity selected;
     ImageDAO imageDAO;
     private boolean isSavedImage;
-
+    /**
+     * Constructs a new instance of the ImageDetailsFragment.
+     *
+     * @param image        The selected image to display.
+     * @param isSavedImage Indicates whether the image is already saved in the database.
+     */
     public ImageDetailsFragment(ImageEntity  image, boolean isSavedImage)
     {
         this.selected = image;
         this.isSavedImage = isSavedImage;
     }
-
+    /**
+     * Interface for listening to image details events.
+     */
     public interface OnImageDetailsListener {
         void onImageSaved(ImageEntity image);
         void onImageDeleted(ImageEntity image);
     }
-
+    /**
+     * Sets the listener for image details events.
+     *
+     * @param listener The listener to set.
+     */
     private OnImageDetailsListener imageDetailsListener;
     public void setOnImageDetailsListener(OnImageDetailsListener listener){
         this.imageDetailsListener = listener;

@@ -10,4 +10,5 @@
     <string name="bear_height_hint">3: Cliquez sur le bouton Générer pour récupérer l’image</string>
     <string name="bear_width_hint">4: Cliquez sur le bouton de la liste enregistrée pour voir les images stockées.</string>
     <string name="bear_generate_btm">Images enregistrées</string>
+    <string name="bear_saved_btn">Saved images</string>
 </resources>

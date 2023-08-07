@@ -42,6 +42,10 @@ import algonquin.cst2335.finalproject.bearData.ImageEntity;
 import algonquin.cst2335.finalproject.databinding.ActivityBearImageGeneratorBinding;
 import algonquin.cst2335.finalproject.databinding.ImageBearBinding;
 
+/**
+ * An activity responsible for generating bear images, saving and displaying them, and handling user interactions.
+ */
+
 public class BearImageGenerator extends AppCompatActivity implements ImageDetailsFragment.OnImageDetailsListener {
     ActivityBearImageGeneratorBinding binding;
     ArrayList<ImageEntity> imageList ;
@@ -55,7 +59,11 @@ public class BearImageGenerator extends AppCompatActivity implements ImageDetail
 
     BearViewModel imageModel;
 
-
+    /**
+     * Overrides the onCreate method of AppCompatActivity to set up the activity and its components.
+     *
+     * @param savedInstanceState A bundle containing the activity's previously saved state.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -122,7 +130,7 @@ public class BearImageGenerator extends AppCompatActivity implements ImageDetail
                         myAdapter.notifyDataSetChanged();
 
                     }catch (Exception e){
-                        
+
                     }
 
                 }
@@ -186,7 +194,9 @@ public class BearImageGenerator extends AppCompatActivity implements ImageDetail
         // Set layout manager for RecyclerView
         binding.recycleView.setLayoutManager(new LinearLayoutManager(this));
     }
-
+    /**
+     * A class representing a row in the RecyclerView to display images.
+     */
     class ImageRowHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
 
@@ -202,7 +212,11 @@ public class BearImageGenerator extends AppCompatActivity implements ImageDetail
             imageView = itemView.findViewById(R.id.imageView);
         }
     }
-
+    /**
+     * Removes the deleted image from the imageList and updates the RecyclerView.
+     *
+     * @param image The ImageEntity to be removed.
+     */
     // Implement the onFlightDeleted() method from the OnFlightDeletedListener interface
     @Override
     public void onImageDeleted(ImageEntity image) {
@@ -210,12 +224,23 @@ public class BearImageGenerator extends AppCompatActivity implements ImageDetail
         imageList.remove(image);
         myAdapter.notifyDataSetChanged();
     }
+    /**
+     * Saves the image to the imageList and updates the RecyclerView.
+     *
+     * @param image The ImageEntity to be saved.
+     */
     @Override
     public void onImageSaved(ImageEntity image) {
         // Save the deleted flight from the flightlist and update the RecyclerView
         imageList.add(image);
         myAdapter.notifyDataSetChanged();
     }
+    /**
+     * Checks if the given image is saved in the database.
+     *
+     * @param image The ImageEntity to be checked.
+     * @return True if the image is saved in the database, false otherwise.
+     */
     private boolean isImageSavedInDatabase(ImageEntity image) {
         long selectedId = image.getId();
         // Use the provided ExecutorService to execute the database query in a separate thread
@@ -241,14 +266,24 @@ public class BearImageGenerator extends AppCompatActivity implements ImageDetail
         }
     }
 
-
+    /**
+     * Creates the options menu for the activity.
+     *
+     * @param menu The menu to be inflated.
+     * @return True to indicate that the menu was successfully inflated.
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.bear_menu,menu);
         return true;
     }
-
+    /**
+     * Handles options menu item selections.
+     *
+     * @param item The selected menu item.
+     * @return True if the item selection is handled, false otherwise.
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if( item.getItemId() == R.id.menu_bear_home ) {

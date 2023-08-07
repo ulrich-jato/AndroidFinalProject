@@ -9,4 +9,5 @@
     <string name="bear_height_hint">Height</string>
     <string name="bear_width_hint">Width</string>
     <string name="bear_generate_btm">Generate Image</string>
+    <string name="bear_saved_btn">Saved images</string>
 </resources>
