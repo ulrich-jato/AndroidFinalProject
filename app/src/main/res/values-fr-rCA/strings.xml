@@ -26,4 +26,23 @@
         \n- Supprimez un vol enregistré de la base de données en utilisant le bouton "Supprimer".
         \n\nProfitez du suivi de vos vols en toute simplicité ! Bon voyage ! ✈️
     </string>
+    <string name="label_aviation_activity">Suivi des vols</string>
+    <string name="destinationCode">Code aéroport de destination :</string>
+    <string name="prompt_save_flight">Voulez-vous enregistrer ce vol ?</string>
+    <string name="yes">Oui</string>
+    <string name="No">Non</string>
+    <string name="flight_already_saved">Ce vol a déjà été enregistré !</string>
+    <string name="flight_details_saved">Détails du vol enregistré !</string>
+    <string name="undo">Annuler</string>
+    <string name="failed_to_save_flight">Les détails du vol n\'ont pas été enregistrés !</string>
+    <string name="prompt_delete_flight">Souhaitez-vous supprimer ce vol ?</string>
+    <string name="flight_not_in_database">Ce vol n\'existe pas dans la base de données !</string>
+    <string name="flight_details_deleted">Détails du vol supprimés !</string>
+    <string name="flight_saving_cancelled">Sauvegarde du vol annulée !</string>
+    <string name="flight_deleting_cancelled">Suppression d\'un vol Annulé !</string>
+    <string name="delete_flight">Supprimer ce vol</string>
+    <string name="save_flight">Enregistrer ce vol</string>
+    <string name="prompt_view_saved_flight">Souhaitez-vous consulter les vols enregistrés ?</string>
+    <string name="enter_valid_code">Veuillez saisir un code valide de 3 caractères</string>
+    <string name="enter_iata_code">Saisir le code IATA</string>
 </resources>

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.room.Room;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -14,7 +15,8 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-import algonquin.cst2335.finalproject.databinding.DetailsLayoutBinding;
+import algonquin.cst2335.finalproject.R;
+import algonquin.cst2335.finalproject.databinding.FlightDetailsBinding;
 
 /**
  * A Fragment class that displays flight details and allows the user to save or delete the flight.
@@ -94,7 +96,7 @@ public class FlightDetailsFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
 
         // Inflate the layout using ViewBinding
-        DetailsLayoutBinding binding = DetailsLayoutBinding.inflate(inflater);
+        FlightDetailsBinding binding = FlightDetailsBinding.inflate(inflater);
 
         // Save the selected flight details to the Room database
         FlightDatabase db = Room.databaseBuilder(requireContext().getApplicationContext(),
@@ -106,38 +108,52 @@ public class FlightDetailsFragment extends Fragment {
         binding.terminalText.setText(selected.getTerminal());
         binding.gateText.setText(selected.getGate());
         binding.delayText.setText(selected.getDelay());
+        binding.destIataCodeText.setText(selected.getIataCodeArrival());
 
         // Check if the flight is already saved, and show corresponding UI
         if (isSavedFlight) {
-            binding.saveFlightDetailsButton.setText("Delete Flight");
+            binding.saveFlightDetailsButton.setText(R.string.delete_flight);
             binding.saveFlightDetailsButton.setOnClickListener(click -> {
                 showDeleteFlightDialog();
             });
         } else {
-            binding.saveFlightDetailsButton.setText("Save Flight");
+            binding.saveFlightDetailsButton.setText(R.string.save_flight);
             binding.saveFlightDetailsButton.setOnClickListener(click -> {
                 showSavedFlightDialog();
             });
         }
 
+        binding.closeFragmentImageView.setOnClickListener(click ->{
+            // Remove the fragment from the fragment container
+            FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+            Fragment currentFragment = fragmentManager.findFragmentById(R.id.fragmentLocation);
+
+            if (currentFragment != null) {
+                // Remove the current fragment
+                fragmentManager.beginTransaction().remove(currentFragment).commit();
+            }
+        });
+
         return binding.getRoot();
     }
+
+
 
     /**
      * Shows a dialog to confirm saving the flight details to the database.
      */
     private void showSavedFlightDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
-        builder.setMessage("Do you Want to save this Flight ?");
+        builder.setMessage(R.string.prompt_save_flight);
         builder.setTitle("Attention!");
 
         // Set the "No" button click listener to perform no action when clicked
-        builder.setNegativeButton("No", (dialog, which) -> {
+        builder.setNegativeButton(R.string.No, (dialog, which) -> {
             // No action required when the user clicks "No"
         });
 
         // Set the "Yes" button click listener to trigger the saveFlightDetails() method
-        builder.setPositiveButton("Yes", (dialog, which) -> {
+        builder.setPositiveButton(R.string.yes, (dialog, which) -> {
             saveFlightDetails();
         });
 
@@ -160,7 +176,7 @@ public class FlightDetailsFragment extends Fragment {
             if (existingFlight != null) {
                 // Flight already exists in the database, show a message to the user.
                 requireActivity().runOnUiThread(() -> {
-                    Snackbar.make(requireView(), "This Flight has already been saved!", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(requireView(), R.string.flight_already_saved, Snackbar.LENGTH_SHORT).show();
                 });
             } else {
                 // Selected flight does not exist in the database, proceed with saving.
@@ -170,13 +186,13 @@ public class FlightDetailsFragment extends Fragment {
                 // Make sure to update the UI components on the main thread.
                 requireActivity().runOnUiThread(() -> {
                     if (id != -1) {
-                        Snackbar.make(requireView(), "Flight details saved!", Snackbar.LENGTH_LONG)
-                                .setAction("Undo", (snackbarClick) -> {
+                        Snackbar.make(requireView(), R.string.flight_details_saved, Snackbar.LENGTH_LONG)
+                                .setAction(R.string.undo, (snackbarClick) -> {
                                     undoSavedFlightDetails(selected);
                                 })
                                 .show();
                     } else {
-                        Snackbar.make(requireView(), "Failed to save flight details!", Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(requireView(), R.string.failed_to_save_flight, Snackbar.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -188,13 +204,13 @@ public class FlightDetailsFragment extends Fragment {
      */
     private void showDeleteFlightDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
-        builder.setMessage("Do you want to delete this Flight?");
+        builder.setMessage(R.string.prompt_delete_flight);
         builder.setTitle("Attention!");
-        builder.setNegativeButton("No", (dialog, which) -> {
+        builder.setNegativeButton(R.string.No, (dialog, which) -> {
             // No action required when the user clicks "No"
         });
 
-        builder.setPositiveButton("Yes", (dialog, which) -> {
+        builder.setPositiveButton(R.string.yes, (dialog, which) -> {
             deleteFlightDetails();
         });
         builder.create().show();
@@ -214,7 +230,7 @@ public class FlightDetailsFragment extends Fragment {
             if (existingFlight == null) {
                 // The selected flight does not exist in the database
                 requireActivity().runOnUiThread(() -> {
-                    Snackbar.make(requireView(), "This Flight does not exist in the database!", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(requireView(), R.string.flight_not_in_database, Snackbar.LENGTH_SHORT).show();
                 });
             } else {
                 // The selected flight exists in the database, proceed with deletion
@@ -228,8 +244,8 @@ public class FlightDetailsFragment extends Fragment {
                     }
 
                     // Show a Snackbar with an option to undo the deletion
-                    Snackbar.make(requireView(), "Flight details deleted!", Snackbar.LENGTH_SHORT)
-                            .setAction("Undo", (snackbarClick) -> {
+                    Snackbar.make(requireView(), R.string.flight_details_deleted, Snackbar.LENGTH_SHORT)
+                            .setAction(R.string.undo, (snackbarClick) -> {
                                 undoDeletedFlightDetails(selected);
                             })
                             .show();
@@ -254,7 +270,7 @@ public class FlightDetailsFragment extends Fragment {
 
             // Make sure to update the UI components on the main thread.
             requireActivity().runOnUiThread(() -> {
-                Snackbar.make(requireView(), "Flight details undone!", Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(requireView(), R.string.flight_saving_cancelled, Snackbar.LENGTH_SHORT).show();
             });
         });
     }

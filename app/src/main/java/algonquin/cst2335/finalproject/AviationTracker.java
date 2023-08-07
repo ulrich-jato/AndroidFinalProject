@@ -3,10 +3,11 @@ package algonquin.cst2335.finalproject;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
@@ -26,7 +27,6 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -110,6 +110,7 @@ public class AviationTracker extends AppCompatActivity implements FlightDetailsF
         binding = ActivityAviationTrackerBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        binding.myToolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.tanAccent));
         setSupportActionBar(binding.myToolbar);
 
         // Initialize the Room database and FlightDAO
@@ -151,13 +152,13 @@ public class AviationTracker extends AppCompatActivity implements FlightDetailsF
         // Set up the click listener for the "View Saved Flight" button
         binding.savedFlightButton.setOnClickListener(click -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(AviationTracker.this);
-            builder.setMessage("Do You Want To View Saved Flight ?");
+            builder.setMessage(R.string.prompt_view_saved_flight);
             builder.setTitle("Attention!");
-            builder.setNegativeButton("No", (cl, which) -> {
+            builder.setNegativeButton(R.string.No, (cl, which) -> {
                 // Code to handle "No" button click
             });
 
-            builder.setPositiveButton("Yes", (cl, which) -> {
+            builder.setPositiveButton(R.string.yes, (cl, which) -> {
                 // Clear the current flight list
                 flightlist.clear();
                 myAdapter.notifyDataSetChanged();
@@ -177,7 +178,7 @@ public class AviationTracker extends AppCompatActivity implements FlightDetailsF
         // Set up the click listener for the "Search Flight" button
         binding.searchFlightButton.setOnClickListener(click -> {
             if (binding.inputCode.getText().toString().equals("")) {
-                String message = "Please enter a valid code";
+                String message = getString(R.string.enter_valid_code);
                 Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -399,7 +400,7 @@ public class AviationTracker extends AppCompatActivity implements FlightDetailsF
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         // Inflate the menu resource file (my_menu.xml) to create menu items
-        getMenuInflater().inflate(R.menu.my_menu, menu);
+        getMenuInflater().inflate(R.menu.flight_menu, menu);
         return true;
     }
 
@@ -413,10 +414,11 @@ public class AviationTracker extends AppCompatActivity implements FlightDetailsF
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         // Check the ID of the selected MenuItem and perform corresponding actions
-        if (item.getItemId() == R.id.menu_flight) {
-            // Open the AviationTracker activity from the menu
+        if (item.getItemId() == R.id.menu_flight_home) {
+            // Open the MainActivity
             startActivity(new Intent(this, MainActivity.class));
-        } else if (item.getItemId() == R.id.menu_help) {
+            finish(); // Close the current activity
+        } else if (item.getItemId() == R.id.menu_flight_help) {
             // Show the help message in an AlertDialog
             AlertDialog.Builder builder = new AlertDialog.Builder(AviationTracker.this)
                     .setMessage(R.string.aviation_help_message)
@@ -425,6 +427,12 @@ public class AviationTracker extends AppCompatActivity implements FlightDetailsF
                         // Code to handle "OK" button click
                     });
             builder.create().show();
+        }else if (item.getItemId() == R.id.menu_flight_currency) {
+            startActivity(new Intent(this, CurrencyGenerator.class));
+        }else if (item.getItemId() == R.id.menu_flight_trivia) {
+            startActivity(new Intent(this, TriviaQuestion.class));
+        }else if (item.getItemId() == R.id.menu_flight_bear) {
+            startActivity(new Intent(this, BearImageGenerator.class));
         }
 
         // Return true to indicate that the menu item selection is successfully handled
