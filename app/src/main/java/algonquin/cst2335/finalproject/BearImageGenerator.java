@@ -1,5 +1,17 @@
 package algonquin.cst2335.finalproject;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,20 +21,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
-
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -257,8 +255,8 @@ public class BearImageGenerator extends AppCompatActivity implements ImageDetail
             startActivity(new Intent(this, MainActivity.class));
         } else if( item.getItemId() == R.id.menu_bear_help ){
             AlertDialog.Builder builder = new AlertDialog.Builder(BearImageGenerator.this)
-                    .setMessage("This is the instruction on how to use Bear Image Generator Application")
-                    .setTitle("Instructions!")
+                    .setMessage(R.string.bear_help)
+                    .setTitle(R.string.bear_alert_intro)
                     .setPositiveButton("OK", (cl, which) -> {
                     });
             builder.create().show();

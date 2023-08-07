@@ -4,4 +4,9 @@
     <string name="currency_converter">Currency Converter</string>
     <string name="trivia_question">Trivia Question Database</string>
     <string name="bear_image">Bear Image Generator</string>
+    <string name="bear_help">1: Enter the height for an image.\n2: Enter Width for image.\n3: Click on Generate button to fetch the image\n4: Click on the saved list button to see images stored.</string>
+    <string name="bear_alert_intro">Instructions</string>
+    <string name="bear_height_hint">Height</string>
+    <string name="bear_width_hint">Width</string>
+    <string name="bear_generate_btm">Generate Image</string>
 </resources>
