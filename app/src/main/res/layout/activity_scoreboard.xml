@@ -7,6 +7,16 @@
     android:background="#21284E"
     tools:context=".Trivia.ScoreboardActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="334dp"
+        android:background="@color/my_primary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <FrameLayout
         android:id="@+id/fragmentLocation"
         android:layout_width="409dp"
@@ -15,7 +25,7 @@
         android:background="#1A237E"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></FrameLayout>
+        app:layout_constraintTop_toTopOf="@+id/textView7"></FrameLayout>
 
 
     <TextView
@@ -28,12 +38,12 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewScoreboard"
         android:layout_width="418dp"
-        android:layout_height="381dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -58,5 +68,13 @@
         app:layout_constraintBottom_toBottomOf="@+id/textView7"
         app:layout_constraintStart_toEndOf="@+id/textViewScoreboard"
         app:layout_constraintTop_toTopOf="@+id/textView7" />
+
+    <Button
+        android:id="@+id/goHome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Back to main menu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="166dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

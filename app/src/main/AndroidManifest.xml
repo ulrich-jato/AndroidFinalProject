@@ -20,16 +20,20 @@
 
         <activity
             android:name=".Trivia.OptionsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/trivia_question"/>
         <activity
             android:name=".Trivia.TriviaActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/trivia_question"/>
         <activity
         android:name=".Trivia.QuizResultActivity"
-        android:exported="false" />
+        android:exported="false"
+            android:label="@string/trivia_question"/>
         <activity
             android:name=".Trivia.ScoreboardActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/trivia_question"/>
         <activity
             android:name=".CurrencyGenerator"
             android:exported="false" />

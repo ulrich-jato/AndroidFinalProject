@@ -5,4 +5,12 @@
     <string name="currency_converter">Convertisseur de Devises</string>
     <string name="trivia_question">Questions Anecdotiques</string>
     <string name="bear_image">Générateur d\'Images d\'Ours</string>
+    <string name="opt_help">1 : Sélectionnez la catégorie dans la liste déroulante. 2 : Entrez le nombre de questions à tenter. 3 : Lancer le quiz</string>
+    <string name="trivia_help">1 : Cliquez sur Soumettre pour terminer le quiz.</string>
+    <string name="quizResult_help">1 : Cliquez sur le bouton Enregistrer pour enregistrer les résultats dans la base de données. 2 : Cliquez sur le bouton du tableau de bord pour voir la liste des 10 meilleurs scores.</string>
+    <string name="score_help">2 : Cliquez sur le bouton du tableau de bord pour voir la liste des 10 meilleurs scores.</string>
+    <string name="triva_main_intro">Select the category from the options below</string>
+    <string name="trivia_main_start">Starto</string>
+    <string name="trivia_main_copyRight">ⓒCopyright by Mohamoud Farah</string>
+    <!--    <string name="opt_help">1: Click on the dropdown to select a category for the quiz.\n 2: Enter the number of questions you'd like to attempt.</string>-->
 </resources>

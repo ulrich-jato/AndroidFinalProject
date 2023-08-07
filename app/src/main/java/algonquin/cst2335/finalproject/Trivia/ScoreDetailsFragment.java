@@ -11,34 +11,29 @@ import androidx.fragment.app.Fragment;
 
 import algonquin.cst2335.finalproject.databinding.DetailsLayoutBinding;
 
+/**
+ * The ScoreDetailsFragment displays detailed information about a quiz result.
+ * It extends the Fragment class and overrides the onCreateView method to inflate and display the layout.
+ */
 public class ScoreDetailsFragment extends Fragment {
 
-    QuizResult selected;
+    private QuizResult selected;
 
-    public ScoreDetailsFragment(QuizResult q){
+    /**
+     * Constructs a ScoreDetailsFragment instance.
+     *
+     * @param q The QuizResult object containing the selected quiz result data.
+     */
+    public ScoreDetailsFragment(QuizResult q) {
         selected = q;
     }
 
     /**
      * Called to have the fragment instantiate its user interface view.
-     * This is optional, and non-graphical fragments can return null. This will be called between
-     * {@link #onCreate(Bundle)} and {@link #onViewCreated(View, Bundle)}.
-     * <p>A default View can be returned by calling {@link #(int)} in your
-     * constructor. Otherwise, this method returns null.
      *
-     * <p>It is recommended to <strong>only</strong> inflate the layout in this method and move
-     * logic that operates on the returned View to {@link #onViewCreated(View, Bundle)}.
-     *
-     * <p>If you return a View from here, you will later be called in
-     * {@link #onDestroyView} when the view is being released.
-     *
-     * @param inflater           The LayoutInflater object that can be used to inflate
-     *                           any views in the fragment,
-     * @param container          If non-null, this is the parent view that the fragment's
-     *                           UI should be attached to.  The fragment should not add the view itself,
-     *                           but this can be used to generate the LayoutParams of the view.
-     * @param savedInstanceState If non-null, this fragment is being re-constructed
-     *                           from a previous saved state as given here.
+     * @param inflater           The LayoutInflater object that can be used to inflate views in the fragment.
+     * @param container          If non-null, this is the parent view that the fragment's UI should be attached to.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed from a previous saved state.
      * @return Return the View for the fragment's UI, or null.
      */
     @Nullable
@@ -46,10 +41,9 @@ public class ScoreDetailsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         DetailsLayoutBinding binding = DetailsLayoutBinding.inflate(inflater);
-
-        binding.userText.setText(selected.getUsername());
-        binding.sizeText.setText(String.valueOf(selected.getScore()));
-        binding.outcomeText.setText(String.valueOf(selected.getPercentage()));
+        binding.userText.setText("User: " + selected.getUsername());
+        binding.sizeText.setText(String.valueOf("Correct answers: " + selected.getScore()));
+        binding.outcomeText.setText(String.valueOf("Percentage score: " + selected.getPercentage()));
 
         return binding.getRoot();
     }

@@ -7,13 +7,26 @@
     android:background="@color/mainBackgroundColor"
     tools:context=".Trivia.TriviaActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="55dp"
+        android:background="@color/my_primary"
+        app:layout_constraintBottom_toTopOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="600dp"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp">
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/submit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
     </androidx.recyclerview.widget.RecyclerView>
 
@@ -21,12 +34,13 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginBottom="10dp"
         android:text="Trivia Questions Database"
         android:textColor="#FFFCFC"
+        app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
 
     <Button
@@ -46,17 +60,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/prev"
         app:layout_constraintVertical_bias="1.0" />
-
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="161dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="4dp"
-        android:hint="edit text"
-        android:textColor="#FDFDFD"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/submit"
-        app:layout_constraintStart_toEndOf="@+id/prev" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
