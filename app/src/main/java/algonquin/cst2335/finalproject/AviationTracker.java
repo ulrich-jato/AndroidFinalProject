@@ -189,7 +189,7 @@ public class AviationTracker extends AppCompatActivity implements FlightDetailsF
 
             // Retrieve the user-input IATA code
             String inputCode = binding.inputCode.getText().toString().toUpperCase().trim();
-            String apiKey = "3622d6091a8e16662411582d9c9a8f13";
+            String apiKey = "827aff9ec9bb276194711cd7e75f4a1a";
             String stringUrl = "http://api.aviationstack.com/v1/flights?access_key="+ apiKey + "&dep_iata=" + inputCode;
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, stringUrl, null,
                     (successfulResponse) -> {
