@@ -71,7 +71,7 @@ public class ImageDetailsFragment extends Fragment {
             });
         }else{
             // Display the details with save button
-            binding.saveDeleteDetailsButton.setText("Save Flight");
+            binding.saveDeleteDetailsButton.setText("Save Image");
             binding.saveDeleteDetailsButton.setOnClickListener(click ->{
                 showSavedImageDialog();
             });

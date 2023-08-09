@@ -34,6 +34,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+import algonquin.cst2335.finalproject.Trivia.MainTriviaActivity;
 import algonquin.cst2335.finalproject.bearData.BearViewModel;
 import algonquin.cst2335.finalproject.bearData.ImageDAO;
 import algonquin.cst2335.finalproject.bearData.ImageDatabase;
@@ -41,6 +42,7 @@ import algonquin.cst2335.finalproject.bearData.ImageDetailsFragment;
 import algonquin.cst2335.finalproject.bearData.ImageEntity;
 import algonquin.cst2335.finalproject.databinding.ActivityBearImageGeneratorBinding;
 import algonquin.cst2335.finalproject.databinding.ImageBearBinding;
+import algonquin.cst2335.finalproject.Currency.CurrencyGenerator;
 
 /**
  * An activity responsible for generating bear images, saving and displaying them, and handling user interactions.
@@ -300,7 +302,7 @@ public class BearImageGenerator extends AppCompatActivity implements ImageDetail
         }else if (item.getItemId() == R.id.menu_bear_currency) {
             startActivity(new Intent(this, CurrencyGenerator.class));
         }else if (item.getItemId() == R.id.menu_bear_trivia) {
-            startActivity(new Intent(this, TriviaQuestion.class));
+            startActivity(new Intent(this, MainTriviaActivity.class));
         }
         return true;
     }

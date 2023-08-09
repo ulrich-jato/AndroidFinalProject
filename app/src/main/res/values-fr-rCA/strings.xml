@@ -4,7 +4,7 @@
     <string name="aviation_tracker">Suivi des Vols Aériens</string>
     <string name="currency_converter">Convertisseur de Devises</string>
 
-    <string name="trivia_question">Base de données de questions Trivia</string>
+<!--    <string name="trivia_question">Base de données de questions Trivia</string>-->
     <string name="bear_image">Générateur d’images d’ours</string>
     <string name="bear_help">1 : Entrez la hauteur d’une image.</string>
     <string name="bear_alert_intro">2: Entrez la largeur de l’image.</string>
@@ -14,7 +14,7 @@
     <string name="bear_saved_btn">Saved images</string>
 
     <string name="trivia_question">Questions Anecdotiques</string>
-    <string name="bear_image">Générateur d\'Images d\'Ours</string>
+<!--    <string name="bear_image">Générateur d\'Images d\'Ours</string>-->
 
     <string name="opt_help">1 : Sélectionnez la catégorie dans la liste déroulante. 2 : Entrez le nombre de questions à tenter. 3 : Lancer le quiz</string>
     <string name="trivia_help">1 : Cliquez sur Soumettre pour terminer le quiz.</string>
