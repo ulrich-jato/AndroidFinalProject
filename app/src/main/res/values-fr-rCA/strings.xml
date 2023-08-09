@@ -15,7 +15,7 @@
 
     <string name="trivia_question">Questions Anecdotiques</string>
 
-    <string name="bear_image">Générateur d\'Images d\'Ours</string>
+<!--    <string name="bear_image">Générateur d\'Images d\'Ours</string>-->
     <string name="search_flight">Rechercher</string>
     <string name="saved_flight">Vols Enregistrés</string>
     <string name="gate">Porte</string>
@@ -79,7 +79,7 @@
     <string name="valid">Veuillez entrer un code valide</string>
     <string name="delete">Voulez-vous supprimer cette conversion de devise ?</string>
     <string name="deleted">Conversion de devise supprimée !</string>
-    <string name="undo">annuler</string>
+<!--    <string name="undo">annuler</string>-->
     <string name="csaved">La conversion est déjà enregistrée.</string>
     <string name="saved">Conversion enregistrée !</string>
 

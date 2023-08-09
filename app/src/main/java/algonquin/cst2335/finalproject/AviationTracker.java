@@ -39,6 +39,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+import algonquin.cst2335.finalproject.Trivia.MainTriviaActivity;
 import algonquin.cst2335.finalproject.data.Flight;
 import algonquin.cst2335.finalproject.data.FlightDAO;
 import algonquin.cst2335.finalproject.data.FlightDatabase;
@@ -46,7 +47,7 @@ import algonquin.cst2335.finalproject.data.FlightDetailsFragment;
 import algonquin.cst2335.finalproject.data.FlightViewModel;
 import algonquin.cst2335.finalproject.databinding.ActivityAviationTrackerBinding;
 import algonquin.cst2335.finalproject.databinding.ActivityFlightListBinding;
-
+import algonquin.cst2335.finalproject.Currency.CurrencyGenerator;
 /**
  * An activity that tracks aviation flights and displays flight details using RecyclerView.
  * It allows users to search and view flight details and save flights to a local database.
@@ -430,7 +431,7 @@ public class AviationTracker extends AppCompatActivity implements FlightDetailsF
         }else if (item.getItemId() == R.id.menu_flight_currency) {
             startActivity(new Intent(this, CurrencyGenerator.class));
         }else if (item.getItemId() == R.id.menu_flight_trivia) {
-            startActivity(new Intent(this, TriviaQuestion.class));
+            startActivity(new Intent(this, MainTriviaActivity.class));
         }else if (item.getItemId() == R.id.menu_flight_bear) {
             startActivity(new Intent(this, BearImageGenerator.class));
         }
