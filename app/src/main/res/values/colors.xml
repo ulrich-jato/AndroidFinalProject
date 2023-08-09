@@ -5,5 +5,10 @@
     <color name="my_primary">#FF9800</color>
     <color name="my_secondary">#027685</color>
     <color name="statusBarColor">#FF9800</color>
+    <color name="blueBlack">#111f28</color>
+    <color name="blueBlackLight">#152835</color>
+    <color name="tanAccent">#e3cdb3</color>
+    <color name="toolbar_background">#9CF635</color>
+    <color name="background_aviation_main">#71C4EA</color>
 
 </resources>

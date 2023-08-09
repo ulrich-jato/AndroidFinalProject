@@ -5,13 +5,55 @@
     <string name="trivia_question">Trivia Quiz</string>
     <string name="bear_image">Bear Image Generator</string>
 
+    <string name="search_flight">Search Flight</string>
+    <string name="saved_flight">Saved Flights</string>
+    <string name="gate">Gate:</string>
+    <string name="delay">Delay:</string>
+    <string name="terminal">Terminal:</string>
+    <string name="destination">Dest:</string>
+    <string name="destinationCode">Destination Airport Code:</string>
+    <string name="flightDetails">FLIGHT DETAILS</string>
+    <string name="saveFlightButton">Save Flight</string>
+    <string name="aviation_help_message">
+        Welcome to the Aviation Flight Tracker!\n\n
+        1. Search Flights:\n
+        - Type the 3-digit IATA Code of the airport to list all flights.\n
+        - Select a flight to view its details, including Destination, Terminal, Gate, and Delay.\n
+        - Save flight details to the device by clicking the "Save" button.\n\n
+        2. View Saved Flights:\n
+        - Click the "View Saved Flights" button on the main page.\n
+        - See a list of flights saved to the device.\n
+        - Click on a flight to view its details.\n
+        - Delete a saved flight from the database using the "Delete" button.\n\n
+        Enjoy tracking your flights with ease! Safe travels! ✈️
+    </string>
+    <string name="label_aviation_activity">Flight Tracker</string>
+    <string name="prompt_save_flight">Do you want to save this flight?</string>
+    <string name="flight_already_saved">This flight has already been saved!</string>
+    <string name="flight_details_saved">Flight details saved!</string>
+    <string name="failed_to_save_flight">Failed to save flight details!</string>
+    <string name="prompt_delete_flight">Do you want to delete this flight?</string>
+    <string name="flight_not_in_database">This flight does not exist in the database!</string>
+    <string name="flight_details_deleted">Flight details deleted!</string>
+    <string name="flight_saving_cancelled">Flight Saving Cancelled!</string>
+    <string name="flight_deleting_cancelled">Flight Deleting Cancelled!</string>
+    <string name="prompt_view_saved_flight">Do you want to view saved flight?</string>
+    <string name="enter_valid_code">Please enter a valid 3 characters code</string>
+    <string name="enter_iata_code">Enter IATA Code</string>
+
+    <string name="delete_flight">Delete Flight</string>
+    <string name="save_flight">Save Flight</string>
+    <string name="undo">Undo</string>
+    <string name="yes">Yes</string>
+    <string name="No">No</string>
+    <dimen name="text_size_flight_details">16sp</dimen>
+
     <string name="bear_help">1: Enter the height for an image.\n2: Enter Width for image.\n3: Click on Generate button to fetch the image\n4: Click on the saved list button to see images stored.</string>
     <string name="bear_alert_intro">Instructions</string>
     <string name="bear_height_hint">Height</string>
     <string name="bear_width_hint">Width</string>
     <string name="bear_generate_btm">Generate Image</string>
     <string name="bear_saved_btn">Saved images</string>
-
 
     <string name="opt_help">1: Select the category from the drop down.  2: Enter number of questions to attempt.  3: Start the quiz</string>
     <string name="trivia_help">1: Click on submit to finish the quiz.\n2: click on cancel to cancel the quiz.</string>
@@ -42,6 +84,5 @@
     <string name="undo">undo</string>
     <string name="csaved">Conversion is already saved.</string>
     <string name="saved">Conversion saved!</string>
-
 
 </resources>

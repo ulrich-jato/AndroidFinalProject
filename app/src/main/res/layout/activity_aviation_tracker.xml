@@ -4,15 +4,76 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_aviation_main"
     tools:context=".AviationTracker">
 
-    <TextView
-        android:id="@+id/textView"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/myToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blueBlack"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <FrameLayout
+            android:id="@+id/fragmentLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/tanAccent"
+            app:layout_constraintTop_toBottomOf="@+id/myToolbar"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/aviation_background"
+        app:layout_constraintBottom_toTopOf="@id/inputCode"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragmentLocation"
+        app:layout_constraintVertical_bias="0"/>
+
+    <EditText
+        android:id="@+id/inputCode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Task 1 : Jato"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="20dp"
+        android:ems="10"
+        android:hint="@string/enter_iata_code"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/savedFlightButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/searchFlightButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:textSize="20dp"
+        android:backgroundTint="@color/blueBlack"
+        android:textColor="@color/tanAccent"
+        android:text="@string/search_flight"
+        app:layout_constraintBottom_toBottomOf="@+id/savedFlightButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/savedFlightButton" />
+
+    <Button
+        android:id="@+id/savedFlightButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:textSize="20dp"
+        android:backgroundTint="@color/blueBlack"
+        android:textColor="@color/tanAccent"
+        android:layout_marginBottom="32dp"
+        android:text="@string/saved_flight"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

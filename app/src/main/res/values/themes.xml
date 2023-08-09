@@ -7,7 +7,12 @@
         <item name="android:statusBarColor">@color/statusBarColor</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-    </style>
 
+        <item name="android:actionOverflowButtonStyle">@style/OverflowButtonStyle</item>
+    </style>
+    <style name="OverflowButtonStyle" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:tint">@color/tanAccent</item>
+    </style>
     <style name="Theme.FinalProject" parent="Base.Theme.FinalProject" />
+
 </resources>
