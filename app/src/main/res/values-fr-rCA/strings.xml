@@ -3,6 +3,7 @@
     <string name="app_name">ProjectFinal</string>
     <string name="aviation_tracker">Suivi des Vols Aériens</string>
     <string name="currency_converter">Convertisseur de Devises</string>
+
     <string name="trivia_question">Base de données de questions Trivia</string>
     <string name="bear_image">Générateur d’images d’ours</string>
     <string name="bear_help">1 : Entrez la hauteur d’une image.</string>
@@ -11,4 +12,32 @@
     <string name="bear_width_hint">4: Cliquez sur le bouton de la liste enregistrée pour voir les images stockées.</string>
     <string name="bear_generate_btm">Images enregistrées</string>
     <string name="bear_saved_btn">Saved images</string>
+
+    <string name="trivia_question">Questions Anecdotiques</string>
+    <string name="bear_image">Générateur d\'Images d\'Ours</string>
+
+    <string name="opt_help">1 : Sélectionnez la catégorie dans la liste déroulante. 2 : Entrez le nombre de questions à tenter. 3 : Lancer le quiz</string>
+    <string name="trivia_help">1 : Cliquez sur Soumettre pour terminer le quiz.</string>
+    <string name="quizResult_help">1 : Cliquez sur le bouton Enregistrer pour enregistrer les résultats dans la base de données. 2 : Cliquez sur le bouton du tableau de bord pour voir la liste des 10 meilleurs scores.</string>
+    <string name="score_help">2 : Cliquez sur le bouton du tableau de bord pour voir la liste des 10 meilleurs scores.</string>
+    <string name="triva_main_intro">Select the category from the options below</string>
+    <string name="trivia_main_start">Starto</string>
+    <string name="trivia_main_copyRight">ⓒCopyright by Mohamoud Farah</string>
+    <!--    <string name="opt_help">1: Click on the dropdown to select a category for the quiz.\n 2: Enter the number of questions you'd like to attempt.</string>-->
+
+    <string name="history">liste enregistrée</string>
+    <string name="convert">convertir</string>
+    <string name="safe">sauvegarder</string>
+    <string name="message">"1.Saisissez un nombre\n 2.Choisissez une devise (de)\n 3.Choisissez une devise (vers)\n"
+                            "4.Cliquez sur CONVERT pour effectuer une conversion\n 5.cliquez dessus, puis cliquez sur le bouton Enregistrer pour enregistrer\n"
+                            "6.Cliquez longuement dessus, si vous voulez supprimer\n 7. cliquez sur la liste enregistrée, pour vous montrer les devises que vous avez enregistrées."</string>
+    <string name="main">"page d'accueil"</string>
+    <string name="nofound">"Aucune devise enregistrée n'a été trouvée."</string>
+    <string name="valid">Veuillez entrer un code valide</string>
+    <string name="delete">Voulez-vous supprimer cette conversion de devise ?</string>
+    <string name="deleted">Conversion de devise supprimée !</string>
+    <string name="undo">annuler</string>
+    <string name="csaved">La conversion est déjà enregistrée.</string>
+    <string name="saved">Conversion enregistrée !</string>
+
 </resources>

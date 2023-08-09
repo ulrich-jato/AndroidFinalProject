@@ -2,12 +2,46 @@
     <string name="app_name">FinalProject</string>
     <string name="aviation_tracker">Aviation Flight Tracker</string>
     <string name="currency_converter">Currency Converter</string>
-    <string name="trivia_question">Trivia Question Database</string>
+    <string name="trivia_question">Trivia Quiz</string>
     <string name="bear_image">Bear Image Generator</string>
+
     <string name="bear_help">1: Enter the height for an image.\n2: Enter Width for image.\n3: Click on Generate button to fetch the image\n4: Click on the saved list button to see images stored.</string>
     <string name="bear_alert_intro">Instructions</string>
     <string name="bear_height_hint">Height</string>
     <string name="bear_width_hint">Width</string>
     <string name="bear_generate_btm">Generate Image</string>
     <string name="bear_saved_btn">Saved images</string>
+
+
+    <string name="opt_help">1: Select the category from the drop down.  2: Enter number of questions to attempt.  3: Start the quiz</string>
+    <string name="trivia_help">1: Click on submit to finish the quiz.\n2: click on cancel to cancel the quiz.</string>
+    <string name="quizResult_help">1: Click on save button to save the results to the database.\n2: Click on scoreboard button to see list of 10 top scores.</string>
+    <string name="score_help"><![CDATA[1: Click on any of the score to display more details.\n2: Long click on any item to delete it from the database.\n4: Click on the <-- Arrow above to go back to main page.\n5: Click on the Home button at the bottom to go back to the main page.]]></string>
+    <string name="triva_main_intro">Select the category from the options below</string>
+    <string name="trivia_main_start">Start</string>
+    <string name="trivia_main_copyRight">ⓒCopyright by Mohamoud Farah</string>
+    <!--    for the spinner/dropdown options-->
+    <string-array name="category">
+        <item>General Knowledge</item>
+        <item>Sports</item>
+        <item>History</item>
+        <item>Computers</item>
+    </string-array>
+
+    <string name="history">saved list</string>
+    <string name="convert">convert</string>
+    <string name="safe">save</string>
+    <string name="message">"1.Input a number\n 2.Pick a currency (from)\n3.Pick a currency (to)\n"
+                            "4.Click CONVERT to make a conversion\n 5.click on it, then click on the save button to save\n"
+                            "6.Long click on it, if you wanna delete\n 7. click on saved list, to show you the currencies you saved."</string>
+    <string name="main">"main page"</string>
+    <string name="nofound">"No saved currencies found."</string>
+    <string name="valid">Please enter a valid code</string>
+    <string name="delete">Do you want to delete this currency conversion?</string>
+    <string name="deleted">Currency conversion deleted!</string>
+    <string name="undo">undo</string>
+    <string name="csaved">Conversion is already saved.</string>
+    <string name="saved">Conversion saved!</string>
+
+
 </resources>

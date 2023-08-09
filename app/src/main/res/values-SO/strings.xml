@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">magaca application ka</string>
+    <string name="aviation_tracker">tababaraaca dayuradaha</string>
+    <string name="currency_converter">sarrif bedele</string>
+    <string name="trivia_question">su\'aalo cajiiba</string>
+    <string name="bear_image">sawirada dubka</string>
+    <string name="opt_help">1: Ka dooro qaybta hoos u dhaca. 2: Geli tirada su\'aalaha si aad isugu daydo. 3: Bilow su\'aalaha</string>
+    <string name="trivia_help">1: Guji soo gudbi si aad u dhameysato kediska. 2: guji cancel si aad u joojiso kediska.</string>
+    <string name="quizResult_help">1: Guji batoonka keydka si aad natiijada ugu keydiso keydka macluumaadka. 2: Guji badhanka dhibcaha si aad u aragto liiska 10ka dhibcood ee ugu sarreeya.</string>
+    <string name="score_help">1: Guji mid ka mid ah dhibcaha si aad u muujiso tafaasiil dheeraad ah. ku yaal badhanka guriga ee hoose si aad ugu noqoto bogga ugu muhiimsan.</string>
+    <string name="triva_main_intro">Ka dooro qaybta xulashooyinka hoose</string>
+    <string name="trivia_main_start">bilow</string>
+    <string name="trivia_main_copyRight">ⓒCopyright by Mohamoud Farah</string>
+</resources>

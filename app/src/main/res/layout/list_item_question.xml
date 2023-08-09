@@ -1,0 +1,38 @@
+<!-- list_item_question.xml -->
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#21284E"
+    tools:context=".Trivia.TriviaActivity">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/questionText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
+
+<!--    <RadioGroup-->
+<!--        android:id="@+id/optionRadioButton"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:buttonTint="?android:colorAccent"-->
+<!--        android:gravity="center_vertical"-->
+<!--        android:textColor="?android:textColorPrimary"-->
+<!--        android:textSize="16sp" />-->
+
+    <!-- Options TextViews here -->
+
+    <!--</LinearLayout>-->
+</androidx.constraintlayout.widget.ConstraintLayout>
