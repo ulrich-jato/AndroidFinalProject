@@ -2,8 +2,24 @@
     <string name="app_name">FinalProject</string>
     <string name="aviation_tracker">Aviation Flight Tracker</string>
     <string name="currency_converter">Currency Converter</string>
-    <string name="trivia_question">Trivia Question Database</string>
+    <string name="trivia_question">Trivia Quiz</string>
     <string name="bear_image">Bear Image Generator</string>
+
+    <string name="opt_help">1: Select the category from the drop down.  2: Enter number of questions to attempt.  3: Start the quiz</string>
+    <string name="trivia_help">1: Click on submit to finish the quiz.\n2: click on cancel to cancel the quiz.</string>
+    <string name="quizResult_help">1: Click on save button to save the results to the database.\n2: Click on scoreboard button to see list of 10 top scores.</string>
+    <string name="score_help"><![CDATA[1: Click on any of the score to display more details.\n2: Long click on any item to delete it from the database.\n4: Click on the <-- Arrow above to go back to main page.\n5: Click on the Home button at the bottom to go back to the main page.]]></string>
+    <string name="triva_main_intro">Select the category from the options below</string>
+    <string name="trivia_main_start">Start</string>
+    <string name="trivia_main_copyRight">ⓒCopyright by Mohamoud Farah</string>
+    <!--    for the spinner/dropdown options-->
+    <string-array name="category">
+        <item>General Knowledge</item>
+        <item>Sports</item>
+        <item>History</item>
+        <item>Computers</item>
+    </string-array>
+
     <string name="history">saved list</string>
     <string name="convert">convert</string>
     <string name="safe">save</string>
@@ -18,4 +34,5 @@
     <string name="undo">undo</string>
     <string name="csaved">Conversion is already saved.</string>
     <string name="saved">Conversion saved!</string>
+
 </resources>
