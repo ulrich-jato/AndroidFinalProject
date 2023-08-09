@@ -35,7 +35,7 @@
             android:exported="false"
             android:label="@string/trivia_question"/>
         <activity
-            android:name=".CurrencyGenerator"
+            android:name=".Currency.CurrencyGenerator"
             android:exported="false" />
         <activity
             android:name=".AviationTracker"
