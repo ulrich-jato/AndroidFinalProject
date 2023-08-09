@@ -211,7 +211,7 @@ public class CurrencyGenerator extends AppCompatActivity {
                     (successfulResponse) -> {
                         JSONObject rates = null;
                         try {
-                            rates = successfulResponse.getJSONObject("rates");
+                                rates = successfulResponse.getJSONObject("rates");
 
                             // Get the "CAD" object from "rates"
                             JSONObject cadObject = rates.getJSONObject(converto);
