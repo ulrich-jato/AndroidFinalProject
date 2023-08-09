@@ -23,7 +23,7 @@ import java.util.List;
 
 import algonquin.cst2335.finalproject.AviationTracker;
 import algonquin.cst2335.finalproject.BearImageGenerator;
-import algonquin.cst2335.finalproject.CurrencyGenerator;
+import algonquin.cst2335.finalproject.Currency.CurrencyGenerator;
 import algonquin.cst2335.finalproject.MainActivity;
 import algonquin.cst2335.finalproject.R;
 import algonquin.cst2335.finalproject.databinding.ActivityTriviaQtnsSetupBinding;

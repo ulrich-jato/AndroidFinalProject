@@ -9,18 +9,6 @@ package algonquin.cst2335.finalproject.Currency;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
-
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -34,6 +22,16 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -53,7 +51,7 @@ import algonquin.cst2335.finalproject.AviationTracker;
 import algonquin.cst2335.finalproject.BearImageGenerator;
 import algonquin.cst2335.finalproject.MainActivity;
 import algonquin.cst2335.finalproject.R;
-import algonquin.cst2335.finalproject.TriviaQuestion;
+import algonquin.cst2335.finalproject.Trivia.MainTriviaActivity;
 import algonquin.cst2335.finalproject.databinding.ActivityCurrencyGeneratorBinding;
 import algonquin.cst2335.finalproject.databinding.ActivityCurrencyconvertedBinding;
 /**
@@ -110,7 +108,7 @@ public class CurrencyGenerator extends AppCompatActivity {
         if (item.getItemId() == R.id.icon_flight) {
             startActivity(new Intent(this, AviationTracker.class));
         } else if (item.getItemId() == R.id.icon_question) {
-            startActivity(new Intent(this, TriviaQuestion.class));
+            startActivity(new Intent(this, MainTriviaActivity.class));
         } else if (item.getItemId() == R.id.icon_bear) {
             startActivity(new Intent(this, BearImageGenerator.class));
         } else if (item.getItemId() == R.id.icon_back) {
